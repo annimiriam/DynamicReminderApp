@@ -2,6 +2,8 @@ package View;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.AttributedCharacterIterator;
 import Model.TimeUnit;
 
@@ -16,6 +18,7 @@ public class SingleTaskPanel extends JPanel{
     private String title;
     private TimeUnit timeUnit;
     private int taskId;
+    private ButtonActionListener btnListener;
 
     public SingleTaskPanel(String title, int timeRemaining, TimeUnit timeUnit) {
         this.title = title;
@@ -28,9 +31,13 @@ public class SingleTaskPanel extends JPanel{
         lblTask.setFont(new Font("Arial", Font.BOLD, 15));
         btnDone = new JButton("Mark as done");
         btnOpen = new JButton("Open Task");
+        btnListener = new ButtonActionListener();
+        btnDone.addActionListener(btnListener);
+        btnOpen.addActionListener(btnListener);
         add(lblTask);
         add(btnDone);
         add(btnOpen);
+
     }
 
     private String generateText(String title, int timeRemaining) {
@@ -59,6 +66,18 @@ public class SingleTaskPanel extends JPanel{
     public void updateDaysRemaining(int timeRemaining) {
         String text = generateText(null, timeRemaining);
         lblTask.setText(text);
+    }
+
+    private class ButtonActionListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == btnDone) {
+
+            }
+            else if (e.getSource() == btnOpen)
+            {
+
+            }
+        }
     }
 
 }
