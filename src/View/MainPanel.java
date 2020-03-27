@@ -18,6 +18,8 @@ public class MainPanel extends JPanel{
     private CardLayout cardLayout;
     private MenuPanel menuPanel;
     private Controller controller;
+    private JScrollPane scrollPane;
+    private JScrollBar scrollBar;
 
     public MainPanel(Controller controller, int width, int height){
         this.controller = controller;
@@ -47,7 +49,10 @@ public class MainPanel extends JPanel{
         //deletePanel = new DeletePanel(controller, width, cardHeight);
         //calendarPanel = new CalendarPanel(controller, width, cardHeight);
         //statisticsPanel = new StatisticsPanel(controller, width, cardHeight);
-        cardPanel.add(taskOverviewPanel, "1");
+        scrollPane = new JScrollPane(taskOverviewPanel);
+        scrollBar = scrollPane.getVerticalScrollBar();
+        //scrollPane.setPreferredSize(new Dimension(width, height));
+        cardPanel.add(scrollPane, "1");
         cardPanel.add(taskDetailsPanel, "2");
         //cardPanel.add(deletePanel, "3")
         //cardPanel.add(calendarPanel, "4");
