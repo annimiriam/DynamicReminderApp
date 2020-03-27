@@ -4,14 +4,10 @@ import Controller.Controller;
 import Model.TimeUnit;
 
 import javax.swing.*;
-import javax.swing.event.ListDataListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.SimpleDateFormat;
 import java.time.LocalTime;
-import java.util.Calendar;
-import java.util.Date;
 
 /**
  * @author Cornelia Sköld & Hanna My Jansson
@@ -282,10 +278,44 @@ public class TaskDetailsPanel extends JPanel {
         return taNotes.getText();
     }
 
+    public void clearAllFields(){
+        tfTitle.setText("");
+        tfInterval.setText("");
+        comboBoxTimeUnits.setSelectedIndex(0);
+        comboBoxHoursFrom.setSelectedIndex(0);
+        comboBoxHoursTo.setSelectedIndex(0);
+        comboBoxDatesFrom.setSelectedIndex(0);
+        comboBoxDatesTo.setSelectedIndex(0);
+        if(cbMonday.isSelected()){
+            cbMonday.doClick();
+        }
+        if(cbTuesday.isSelected()){
+            cbTuesday.doClick();
+        }
+        if(cbWednesday.isSelected()){
+            cbWednesday.doClick();
+        }
+        if(cbThursday.isSelected()){
+            cbThursday.doClick();
+        }
+        if(cbFriday.isSelected()){
+            cbFriday.doClick();
+        }
+        if(cbSaturday.isSelected()){
+            cbSaturday.doClick();
+        }
+        if(cbSunday.isSelected()){
+            cbSunday.doClick();
+        }
+        taNotes.setText("");
+
+    }
+
     private class ButtonActionListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == btnSave) {
                 controller.buttonPressed(ButtonType.SAVE);
+                clearAllFields();
             }
         }
     }
