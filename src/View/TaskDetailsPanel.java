@@ -274,7 +274,11 @@ public class TaskDetailsPanel extends JPanel {
     }
 
     public void setNotes(String notes){
+        taNotes.setText(notes);
+    }
 
+    public String getNotes(){
+        return taNotes.getText();
     }
 
 
