@@ -19,7 +19,7 @@ public class MainPanel extends JPanel{
     private MenuPanel menuPanel;
     private Controller controller;
 
-    public MainPanel(Controller controller, int width, int height){ //TODO: Lägg till Controller som parameter
+    public MainPanel(Controller controller, int width, int height){
         this.controller = controller;
         this.width = width;
         this.height = height;
