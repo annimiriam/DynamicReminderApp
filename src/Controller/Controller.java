@@ -47,6 +47,8 @@ public class Controller {
 
             case MARKASDONE:
 
+
+
                 break;
             case SAVE:
 
@@ -63,6 +65,11 @@ public class Controller {
         }
 
 
+    }
+
+    public void markTaskAsDone(int taskId){
+        Task task = taskRegister.getTaskWithId(taskId);
+        task.markAsDoneNow();
     }
 
     private void updateGUI(){

@@ -15,6 +15,7 @@ public class SingleTaskPanel extends JPanel{
     private JButton btnOpen;
     private String title;
     private TimeUnit timeUnit;
+    private int taskId;
 
     public SingleTaskPanel(String title, int timeRemaining, TimeUnit timeUnit) {
         this.title = title;
@@ -51,6 +52,9 @@ public class SingleTaskPanel extends JPanel{
         return text;
     }
 
+    public void setTaskId(int taskId) {
+        this.taskId = taskId;
+    }
 
     public void updateDaysRemaining(int timeRemaining) {
         String text = generateText(null, timeRemaining);
