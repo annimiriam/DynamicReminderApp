@@ -70,7 +70,8 @@ public class SingleTaskPanel extends JPanel{
 
     private class ButtonActionListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            if (e.getSource() == btnDone) {
+            if (e.getSource() == btnDone)
+            {
 
             }
             else if (e.getSource() == btnOpen)

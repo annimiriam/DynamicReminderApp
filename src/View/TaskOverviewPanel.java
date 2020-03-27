@@ -26,7 +26,6 @@ public class TaskOverviewPanel extends JPanel{
         index = 0;
         setPreferredSize(new Dimension(width,height+1000));
 
-
     }
 
     public void addTask(String title, int timeRemaining, TimeUnit timeUnit) {
