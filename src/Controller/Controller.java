@@ -60,7 +60,7 @@ public class Controller {
                 Task newTask = new Task(title, info, preferredInterval);
                 taskRegister.addTask(newTask);
                 frame.addTask(newTask.getTitle(), newTask.getTimeUntil(), newTask.getTimeUnit());
-                frame.setCard("2");
+                frame.setCard("1");
                 break;
         }
 
@@ -73,7 +73,7 @@ public class Controller {
     }
 
     public void openTask(int taskId){
-
+taskRegister.getTaskWithId(taskId);
 
     }
     private void updateGUI(){
