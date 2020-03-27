@@ -120,6 +120,18 @@ public class Task implements Comparable<Object>{
         this.nextNotification = nextNotification;
     }
 
+
+    public boolean[] getPossibleDates(){
+        return possibleTimeForExecution.getPossibleDates();
+    }
+
+    public boolean[] getPossibleWeekdays(){
+        return possibleTimeForExecution.getPossibleWeekdays();
+    }
+
+    public TimeInterval getPossibleTimeInterval(){
+        return possibleTimeForExecution.getPossibleHours();
+    }
     public int getTimeUntil(){
         int time = preferredInterval.getTime();
         int timeUntil = -5;

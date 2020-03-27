@@ -51,6 +51,10 @@ public class PossibleHours {
 
     }
 
+    public TimeInterval getPossibleTimeInterval(){
+        return intervals[0];
+    }
+
     /**
      * Adds a interval to the array of intervals
      * @param timeFrom the beginning of the interval

@@ -68,6 +68,18 @@ public class PossibleTime {
         this.possibleWeekDays.setPossibleWeekdays(possibleWeekDays);
     }
 
+
+    public boolean[] getPossibleDates() {
+        return possibleDates.getPossibleDates();
+    }
+
+    public boolean[] getPossibleWeekdays(){
+        return possibleWeekDays.getPossibleWeekdays();
+    }
+    public TimeInterval getPossibleHours(){
+       return possibleHours.getPossibleTimeInterval();
+    }
+
     /**
      *
      * @param date

@@ -53,6 +53,14 @@ public class TimeInterval {
 
     }
 
+    public LocalTime getFrom() {
+        return from;
+    }
+
+    public LocalTime getTo() {
+        return to;
+    }
+
     /**
      * Checks if the date is in the interval
      * @param date the date to be checked

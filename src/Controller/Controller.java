@@ -2,6 +2,7 @@ package Controller;
 
 import java.util.Calendar;
 import java.util.Date;
+
 import View.MainFrame;
 import View.ButtonType;
 import Model.*;
@@ -48,7 +49,6 @@ public class Controller {
             case MARKASDONE:
 
 
-
                 break;
             case SAVE:
 
@@ -67,19 +67,28 @@ public class Controller {
 
     }
 
-    public void markTaskAsDone(int taskId){
+    public void markTaskAsDone(int taskId) {
         Task task = taskRegister.getTaskWithId(taskId);
         task.markAsDoneNow();
     }
 
-    public void openTask(int taskId){
-taskRegister.getTaskWithId(taskId);
+    public void openTask(int taskId) {
+        Task task = taskRegister.getTaskWithId(taskId);
+        frame.setTaskTitle(task.getTitle());
+        frame.setNotes(task.getInfo());
+        frame.setPossibleDates(task.getPossibleDates());
+        frame.setPossibleWeekdays(task.getPossibleWeekdays());
+        TimeInterval timeInterval = task.getPossibleTimeInterval();
+        if(timeInterval != null)
+        frame.setPossibleHours(timeInterval.getFrom(), timeInterval.getTo());
 
     }
-    private void updateGUI(){
+
+    private void updateGUI() {
 
 
     }
+
     public static void main(String[] args) {
         Controller controller = new Controller();
     }

@@ -47,6 +47,11 @@ public class PossibleWeekDays {
             return false;
     }
 
+
+    public boolean[] getPossibleWeekdays() {
+        return possibleWeekdays;
+    }
+
     /**
      * Checks if the task is possible to perform at the given date
      * @param date, the date that we want to preform the task at
