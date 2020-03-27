@@ -6,6 +6,8 @@ import View.MainFrame;
 import View.ButtonType;
 import Model.*;
 
+// Hej från oss i Malmö!
+
 /**
  * @author Hanna My Jansson
  * @version 1.0
