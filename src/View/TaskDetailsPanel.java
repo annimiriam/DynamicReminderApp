@@ -246,13 +246,39 @@ public class TaskDetailsPanel extends JPanel {
 
     //TODO: hur ska detta visas om det är fler än ett datum??
     public void setPossibleDates(boolean[] dates){
-
+        int from = comboBoxDatesFrom.getSelectedIndex() -1;
+        int to = comboBoxDatesTo.getSelectedIndex() -1;
+        for (int i = 0; i < dates.length; i++){
+            if (i < from && i > to){
+                dates[i] = false;
+            } else {
+                dates[i] = true;
+            }
+        }
     }
 
     public boolean[] getPossibleDates(){
         boolean[] dates = new boolean[31];
+        int from;
+        int to;
 
+        for (int i = 0; i < dates.length; i++){
+            if (dates[i]){
+                from = i;
+            } else {
+                to = i;
+                break;
+            }
+        }
         return dates;
+    }
+
+    public void setNotes(String notes){
+        taNotes.setText(notes);
+    }
+
+    public String getNotes(){
+        return taNotes.getText();
     }
 
 
