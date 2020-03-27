@@ -192,8 +192,6 @@ public class TaskDetailsPanel extends JPanel {
         return tfTitle.getText();
     }
 
-
-
     public int getIntervalAmount() {
         int interval = 0;
         interval = Integer.parseInt(tfInterval.getText());
