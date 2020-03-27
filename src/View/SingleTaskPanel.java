@@ -13,7 +13,7 @@ import Model.TimeUnit;
  * @author Cornelia Sköld
  * @version 1.0
  */
-public class SingleTaskPanel extends JPanel{
+public class SingleTaskPanel extends JPanel {
     private JLabel lblTask;
     private JButton btnDone;
     private JButton btnOpen;
@@ -51,15 +51,15 @@ public class SingleTaskPanel extends JPanel{
         String text;
 
         if (timeRemaining > 1)
-            text = timeRemaining + " "+timeUnit.toString()+"s remaining to: " + title;
-        else if(timeRemaining == 1)
-            text = timeRemaining + " "+timeUnit.toString()+ " remaining to: " + title;
+            text = timeRemaining + " " + timeUnit.toString() + "s remaining to: " + title;
+        else if (timeRemaining == 1)
+            text = timeRemaining + " " + timeUnit.toString() + " remaining to: " + title;
         else if (timeRemaining == 0)
             text = "Now its time to: " + title;
-        else if(timeRemaining == -1)
-            text = Math.abs(timeRemaining) + " "+timeUnit.toString()+" LATE to: " + title;
+        else if (timeRemaining == -1)
+            text = Math.abs(timeRemaining) + " " + timeUnit.toString() + " LATE to: " + title;
         else
-            text = Math.abs(timeRemaining) + " "+timeUnit.toString()+"s LATE to: " + title;
+            text = Math.abs(timeRemaining) + " " + timeUnit.toString() + "s LATE to: " + title;
         return text;
     }
 
@@ -74,13 +74,10 @@ public class SingleTaskPanel extends JPanel{
 
     private class ButtonActionListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            if (e.getSource() == btnDone)
-            {
-
-            }
-            else if (e.getSource() == btnOpen)
-            {
-
+            if (e.getSource() == btnDone) {
+                controller.markTaskAsDone(taskId);
+            } else if (e.getSource() == btnOpen) {
+                controller.openTask(taskId);
             }
         }
     }
