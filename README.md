@@ -1,6 +1,6 @@
 # DynamicReminderApp
-#####Öppna kodfilerna i din IDE, leta upp klassen Controller. 
-#####I den finns en main-metod, kör den.
+#####?ppna kodfilerna i din IDE, leta upp klassen Controller. 
+#####I den finns en main-metod, k?r den.
 #####Nu ska prototypen synas.
-#####Klicka på "Add" för att lägga till en uppgift.
-#####Klicka på Tasks för att se dina uppgifter.
+#####Klicka p? "Add" f?r att l?gga till en uppgift.
+#####Klicka p? Tasks f?r att se dina uppgifter.

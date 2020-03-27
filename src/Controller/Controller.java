@@ -5,7 +5,7 @@ import java.util.Date;
 import View.MainFrame;
 import View.ButtonType;
 import Model.*;
-//hej intellij
+
 /**
  * @author Hanna My Jansson
  * @version 1.0
