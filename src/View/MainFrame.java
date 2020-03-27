@@ -37,11 +37,11 @@ public class MainFrame extends JFrame {
 
 
     public String getTitle(){
-        return panel.getTaskDetailsPanel().getTitle();
+        return panel.getTaskDetailsPanel().getTaskTitle();
     }
 
     public String getInfo(){
-        return panel.getTaskDetailsPanel().getInfo();
+        return panel.getTaskDetailsPanel().getNotes();
     }
 
     public int getIntervalAmount(){

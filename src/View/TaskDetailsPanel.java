@@ -277,16 +277,8 @@ public class TaskDetailsPanel extends JPanel {
         taNotes.setText(notes);
     }
 
-    public String getNotes(){
-        return taNotes.getText();
-    }
 
-
-    public String getTitle() {
-        return tfTitle.getText();
-    }
-
-    public String getInfo() {
+    public String getNotes() {
         return taNotes.getText();
     }
 
