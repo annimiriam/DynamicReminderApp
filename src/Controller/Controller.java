@@ -26,10 +26,10 @@ public class Controller {
     public void buttonPressed(ButtonType button) {
         switch (button) {
             case TASKS:
-                frame.setCard("2"); //TODO: ta reda på varför 2 visar overview
+                frame.setCard("1"); //TODO: ta reda på varför 2 visar overview
                 break;
             case ADD:
-                frame.setCard("1"); //TODO: ta reda på varför 1 visar add
+                frame.setCard("2"); //TODO: ta reda på varför 1 visar add
 
                 break;
             case DELETE:
@@ -60,7 +60,7 @@ public class Controller {
                 Task newTask = new Task(title, info, preferredInterval);
                 taskRegister.addTask(newTask);
                 frame.addTask(newTask.getTitle(), newTask.getTimeUntil(), newTask.getTimeUnit());
-                frame.setCard("2");
+                frame.setCard("1");
                 break;
         }
 
@@ -72,6 +72,10 @@ public class Controller {
         task.markAsDoneNow();
     }
 
+    public void openTask(int taskId){
+taskRegister.getTaskWithId(taskId);
+
+    }
     private void updateGUI(){
 
 

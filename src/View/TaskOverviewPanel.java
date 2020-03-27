@@ -26,12 +26,11 @@ public class TaskOverviewPanel extends JPanel{
         index = 0;
         setPreferredSize(new Dimension(width,height+1000));
 
-
     }
 
     public void addTask(String title, int timeRemaining, TimeUnit timeUnit) {
 
-        singleTaskPanels[index] = new SingleTaskPanel(title, timeRemaining, timeUnit);
+        singleTaskPanels[index] = new SingleTaskPanel(title, timeRemaining, timeUnit, controller);
         add(singleTaskPanels[index]);
         index++;
     }
