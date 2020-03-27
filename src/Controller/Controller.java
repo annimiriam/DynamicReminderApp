@@ -12,6 +12,7 @@ import Model.*;
  * @author Hanna My Jansson
  * @version 1.0
  */
+
 public class Controller {
     private MainFrame frame;
     private TaskRegister taskRegister;
@@ -45,8 +46,6 @@ public class Controller {
                 break;
 
             case MARKASDONE:
-
-
 
                 break;
             case SAVE:

@@ -126,7 +126,12 @@ public class Task implements Comparable<Object>{
         if(lastPerformed == null){
             timeUntil = time;
         }else{
-            timeUntil = time;
+            Calendar cal = Calendar.getInstance();
+            Date dateNow = cal.getTime();
+            dateNow.compareTo(lastPerformed);
+
+
+
             //TODO
         }
 
