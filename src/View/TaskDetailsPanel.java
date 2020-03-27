@@ -1,17 +1,19 @@
 package View;
 
+import Controller.Controller;
+import Model.TimeUnit;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import Controller.*;
-import Model.TimeUnit;
 
 /**
  * @author Cornelia Sköld & Hanna My Jansson
  * @version 1.0
  */
-public class TaskDetailsPanel extends JPanel{
+
+public class TaskDetailsPanel extends JPanel {
     private int width, height;
     private Controller controller;
     private JScrollPane scrollPane;
@@ -79,8 +81,6 @@ public class TaskDetailsPanel extends JPanel{
         lblIntervalChoice.setPreferredSize(new Dimension(200, 25));
         tfInterval = new JTextField();
         tfInterval.setPreferredSize(new Dimension(40, 25));
-        //String timeUnits[] = {"hour", "day", "week", "month", "year"};
-        //comboBoxTimeUnits = new JComboBox(timeUnits);
         comboBoxTimeUnits = new JComboBox<>(TimeUnit.values());
         intervalPanel.add(lblIntervalChoice);
         intervalPanel.add(tfInterval);
@@ -93,8 +93,8 @@ public class TaskDetailsPanel extends JPanel{
         possibleHoursPanel = new JPanel();
         lblHoursFrom = new JLabel("Hours from:");
         lblHoursTo = new JLabel("To:");
-        String hours[] = {"01","02","03","04","05","06","07","08","09","10","11","12",
-                "13","14","15","16","17","18","19","20","21","22","23","24"};
+        String hours[] = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12",
+                "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"};
         comboBoxHoursFrom = new JComboBox<>(hours);
         comboBoxHoursTo = new JComboBox<>(hours);
         btnAddHourInterval = new JButton("Add");
@@ -124,7 +124,7 @@ public class TaskDetailsPanel extends JPanel{
         weekdaysPanel.add(cbSaturday);
         weekdaysPanel.add(cbSunday);
 
-        datesPanel= new JPanel();
+        datesPanel = new JPanel();
         lblDates = new JLabel("Specific date:");
         lblDates.setFont(new Font("Arial", Font.BOLD, 14));
         tfDates = new JTextField("YYMMDD");
@@ -165,29 +165,44 @@ public class TaskDetailsPanel extends JPanel{
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         add(scrollPane);
+    }
 
+    public boolean[] getPossibleWeekdays() {
+        boolean[] possibleWeekdays = new boolean[7];
+
+        possibleWeekdays[0] = cbMonday.isSelected();
+        possibleWeekdays[1] = cbTuesday.isSelected();
+        possibleWeekdays[2] = cbWednesday.isSelected();
+        possibleWeekdays[3] = cbThursday.isSelected();
+        possibleWeekdays[4] = cbFriday.isSelected();
+        possibleWeekdays[5] = cbSaturday.isSelected();
+        possibleWeekdays[6] = cbSaturday.isSelected();
+
+        return possibleWeekdays;
     }
 
 
-    public String getTitle(){
+    public String getTitle() {
         return tfTitle.getText();
     }
 
-    public String getInfo(){
+    public String getInfo() {
         return taNotes.getText();
     }
 
-    public int getIntervalAmount(){
+    public int getIntervalAmount() {
         int interval = 0;
         interval = Integer.parseInt(tfInterval.getText());
         return interval;
     }
 
-    public TimeUnit getIntervalUnit(){
+    public TimeUnit getIntervalUnit() {
         //TODO funkar detta? eller är det en string som ska göras om till en timeunit först?
         TimeUnit timeUnit = (TimeUnit) comboBoxTimeUnits.getSelectedItem();
         return timeUnit;
     }
+
+
     private class ButtonActionListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == btnSave) {
