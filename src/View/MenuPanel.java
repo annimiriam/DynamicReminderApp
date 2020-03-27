@@ -45,9 +45,9 @@ public class MenuPanel extends JPanel{
     class ButtonActionListener implements ActionListener{
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == btnAdd) {
-                controller.buttonPressed(ButtonType.TASKS);
-            } else if (e.getSource() == btnTasks){
                 controller.buttonPressed(ButtonType.ADD);
+            } else if (e.getSource() == btnTasks){
+                controller.buttonPressed(ButtonType.TASKS);
             } else if (e.getSource() == btnDelete){
                 controller.buttonPressed(ButtonType.DELETE);
             } else if (e.getSource() == btnCalendar){
