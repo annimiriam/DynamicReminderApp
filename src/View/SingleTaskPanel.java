@@ -5,6 +5,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.AttributedCharacterIterator;
+
+import Controller.Controller;
 import Model.TimeUnit;
 
 /**
@@ -19,10 +21,12 @@ public class SingleTaskPanel extends JPanel{
     private TimeUnit timeUnit;
     private int taskId;
     private ButtonActionListener btnListener;
+    private Controller controller;
 
-    public SingleTaskPanel(String title, int timeRemaining, TimeUnit timeUnit) {
+    public SingleTaskPanel(String title, int timeRemaining, TimeUnit timeUnit, Controller controller) {
         this.title = title;
         this.timeUnit = timeUnit;
+        this.controller = controller;
 
         setPreferredSize(new Dimension(380, 60));
         String text = generateText(title, timeRemaining);

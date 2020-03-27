@@ -30,7 +30,7 @@ public class TaskOverviewPanel extends JPanel{
 
     public void addTask(String title, int timeRemaining, TimeUnit timeUnit) {
 
-        singleTaskPanels[index] = new SingleTaskPanel(title, timeRemaining, timeUnit);
+        singleTaskPanels[index] = new SingleTaskPanel(title, timeRemaining, timeUnit, controller);
         add(singleTaskPanels[index]);
         index++;
     }
