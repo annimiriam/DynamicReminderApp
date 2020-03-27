@@ -283,8 +283,6 @@ public class TaskDetailsPanel extends JPanel {
     }
 
 
-
-
     private class ButtonActionListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == btnSave) {
