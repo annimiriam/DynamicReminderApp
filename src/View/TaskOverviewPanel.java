@@ -17,13 +17,14 @@ public class TaskOverviewPanel extends JPanel{
     private int index;
 
 
+
     public TaskOverviewPanel(Controller controller, int width, int height) {
         this.controller = controller;
         this.width = width;
         this.height = height;
         singleTaskPanels = new SingleTaskPanel[30];
         index = 0;
-        setPreferredSize(new Dimension(width, height));
+        setPreferredSize(new Dimension(width,height+1000));
 
 
     }
