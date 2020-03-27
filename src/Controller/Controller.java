@@ -23,10 +23,10 @@ public class Controller {
     public void buttonPressed(ButtonType button) {
         switch (button) {
             case TASKS:
-                frame.setCard("2"); //TODO: ta reda p� varf�r 2 visar overview
+                frame.setCard("2"); //TODO: ta reda p? varf?r 2 visar overview
                 break;
             case ADD:
-                frame.setCard("1"); //TODO: ta reda p� varf�r 1 visar add
+                frame.setCard("1"); //TODO: ta reda p? varf?r 1 visar add
 
                 break;
             case DELETE:
