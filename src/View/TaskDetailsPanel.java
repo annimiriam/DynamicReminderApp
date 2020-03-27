@@ -192,10 +192,7 @@ public class TaskDetailsPanel extends JPanel {
         return tfTitle.getText();
     }
 
-    public void setTaskInterval(int amount, TimeUnit timeUnit ){
-          tfInterval.setText(String.valueOf(amount));
-          comboBoxTimeUnits.setSelectedItem(timeUnit);
-    }
+
 
     public int getIntervalAmount() {
         int interval = 0;
@@ -206,6 +203,11 @@ public class TaskDetailsPanel extends JPanel {
     public TimeUnit getIntervalUnit() {
         //TODO funkar detta? eller är det en string som ska göras om till en timeunit först?
         return (TimeUnit) comboBoxTimeUnits.getSelectedItem();
+    }
+
+    public void setTaskInterval(int amount, TimeUnit timeUnit ){
+        tfInterval.setText(String.valueOf(amount));
+        comboBoxTimeUnits.setSelectedItem(timeUnit);
     }
 
     //TODO: ingen aning om detta funkar...
@@ -221,30 +223,6 @@ public class TaskDetailsPanel extends JPanel {
         return hours;
     }
 
-    public void setPossibleWeekdays(boolean[] possibleWeekdays){
-        cbMonday.setSelected(possibleWeekdays[0]);
-        cbTuesday.setSelected(possibleWeekdays[1]);
-        cbWednesday.setSelected(possibleWeekdays[2]);
-        cbThursday.setSelected(possibleWeekdays[3]);
-        cbFriday.setSelected(possibleWeekdays[4]);
-        cbSaturday.setSelected(possibleWeekdays[5]);
-        cbSunday.setSelected(possibleWeekdays[6]);
-    }
-
-    public boolean[] getPossibleWeekdays() {
-        boolean[] possibleWeekdays = new boolean[7];
-        possibleWeekdays[0] = cbMonday.isSelected();
-        possibleWeekdays[1] = cbTuesday.isSelected();
-        possibleWeekdays[2] = cbWednesday.isSelected();
-        possibleWeekdays[3] = cbThursday.isSelected();
-        possibleWeekdays[4] = cbFriday.isSelected();
-        possibleWeekdays[5] = cbSaturday.isSelected();
-        possibleWeekdays[6] = cbSaturday.isSelected();
-
-        return possibleWeekdays;
-    }
-
-    //TODO: hur ska detta visas om det är fler än ett datum??
     public void setPossibleDates(boolean[] dates){
         int from = comboBoxDatesFrom.getSelectedIndex() -1;
         int to = comboBoxDatesTo.getSelectedIndex() -1;
@@ -271,6 +249,29 @@ public class TaskDetailsPanel extends JPanel {
             }
         }
         return dates;
+    }
+
+    public void setPossibleWeekdays(boolean[] possibleWeekdays){
+        cbMonday.setSelected(possibleWeekdays[0]);
+        cbTuesday.setSelected(possibleWeekdays[1]);
+        cbWednesday.setSelected(possibleWeekdays[2]);
+        cbThursday.setSelected(possibleWeekdays[3]);
+        cbFriday.setSelected(possibleWeekdays[4]);
+        cbSaturday.setSelected(possibleWeekdays[5]);
+        cbSunday.setSelected(possibleWeekdays[6]);
+    }
+
+    public boolean[] getPossibleWeekdays() {
+        boolean[] possibleWeekdays = new boolean[7];
+        possibleWeekdays[0] = cbMonday.isSelected();
+        possibleWeekdays[1] = cbTuesday.isSelected();
+        possibleWeekdays[2] = cbWednesday.isSelected();
+        possibleWeekdays[3] = cbThursday.isSelected();
+        possibleWeekdays[4] = cbFriday.isSelected();
+        possibleWeekdays[5] = cbSaturday.isSelected();
+        possibleWeekdays[6] = cbSaturday.isSelected();
+
+        return possibleWeekdays;
     }
 
     public void setNotes(String notes){
