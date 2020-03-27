@@ -72,6 +72,10 @@ public class Controller {
         task.markAsDoneNow();
     }
 
+    public void openTask(int taskId){
+
+
+    }
     private void updateGUI(){
 
 
