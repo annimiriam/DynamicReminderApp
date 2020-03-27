@@ -52,8 +52,8 @@ public class Controller {
                 break;
             case SAVE:
 
-                String title = frame.getTitle();
-                String info = frame.getInfo();
+                String title = frame.getTaskTitle();
+                String info = frame.getNotes();
                 int intervalAmount = frame.getIntervalAmount();
                 TimeUnit timeUnit = frame.getIntervalUnit();
                 TimeSpan preferredInterval = new TimeSpan(intervalAmount, timeUnit);

@@ -277,13 +277,9 @@ public class TaskDetailsPanel extends JPanel {
         taNotes.setText(notes);
     }
 
-
     public String getNotes() {
         return taNotes.getText();
     }
-
-
-
 
     private class ButtonActionListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {

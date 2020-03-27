@@ -36,11 +36,11 @@ public class MainFrame extends JFrame {
     }
 
 
-    public String getTitle(){
+    public String getTaskTitle(){
         return panel.getTaskDetailsPanel().getTaskTitle();
     }
 
-    public String getInfo(){
+    public String getNotes(){
         return panel.getTaskDetailsPanel().getNotes();
     }
 
