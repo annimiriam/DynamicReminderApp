@@ -12,7 +12,7 @@ public class TaskRegister {
 
     public TaskRegister() {
         taskList = new ArrayList<>();
-        lastId = -1;
+        lastId = 0;
     }
 
 
@@ -44,6 +44,7 @@ public class TaskRegister {
 
     public Task getTaskWithId(int id) {
         int index = taskList.indexOf(new Task(id));
+        System.out.println("index: " + index);
         return taskList.get(index);
     }
 

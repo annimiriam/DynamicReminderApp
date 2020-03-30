@@ -91,7 +91,10 @@ public class MainFrame extends JFrame {
         panel.getTaskDetailsPanel().setNotes(notes);
     }
 
-    public void addTask(String title, int timeRemaining, TimeUnit timeUnit){
-        panel.getTaskOverviewPanel().addTask(title,timeRemaining, timeUnit);
+    public void addTask(String title, int timeRemaining, TimeUnit timeUnit, int taskId){
+        panel.getTaskOverviewPanel().addTask(title,timeRemaining, timeUnit, taskId);
     }
+
+    //TODO uppdate metod för alla singlepanels i overveiw
+
 }

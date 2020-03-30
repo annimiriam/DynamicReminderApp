@@ -41,8 +41,7 @@ public class Controller {
                 break;
             case STATISTICS:
                 //frame.setCard("5");
-                Calendar cal = Calendar.getInstance();
-                Date dateNow = cal.getTime();
+
 
                 break;
 
@@ -59,7 +58,7 @@ public class Controller {
                 TimeSpan preferredInterval = new TimeSpan(intervalAmount, timeUnit);
                 Task newTask = new Task(title, info, preferredInterval);
                 taskRegister.addTask(newTask);
-                frame.addTask(newTask.getTitle(), newTask.getTimeUntil(), newTask.getTimeUnit());
+                frame.addTask(newTask.getTitle(), newTask.getTimeUntil(), newTask.getTimeUnit(), newTask.getId());
                 frame.setCard("1");
                 break;
         }
@@ -81,7 +80,7 @@ public class Controller {
         TimeInterval timeInterval = task.getPossibleTimeInterval();
         if(timeInterval != null)
         frame.setPossibleHours(timeInterval.getFrom(), timeInterval.getTo());
-
+        frame.setCard("2");
     }
 
     private void updateGUI() {
