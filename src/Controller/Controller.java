@@ -50,7 +50,6 @@ public class Controller {
 
                 break;
             case SAVE:
-
                 String title = frame.getTaskTitle();
                 String info = frame.getNotes();
                 int intervalAmount = frame.getIntervalAmount();
@@ -61,6 +60,9 @@ public class Controller {
                 frame.addTask(newTask.getTitle(), newTask.getTimeUntil(), newTask.getTimeUnit(), newTask.getId());
                 frame.setCard("1");
                 break;
+
+
+
         }
 
 
@@ -68,7 +70,9 @@ public class Controller {
 
     public void markTaskAsDone(int taskId) {
         Task task = taskRegister.getTaskWithId(taskId);
+        System.out.println("Task id: " + taskId );
         task.markAsDoneNow();
+        System.out.println("Last performed: " + task.getLastPerformed().toString());
     }
 
     public void openTask(int taskId) {

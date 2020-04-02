@@ -1,25 +1,28 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * @author Hanna My Jansson
  * @version 1.0
  */
 public class TaskRegister {
-    private ArrayList<Task> taskList;
+    private HashMap<Integer,Task> taskList;
+
     private int lastId;
 
     public TaskRegister() {
-        taskList = new ArrayList<>();
+        taskList = new HashMap();
         lastId = 0;
     }
 
 
     public void addTask(Task task){
         if(task!=null) {
-            task.setID(generateId());
-            taskList.add(task);
+            int id = generateId();
+            task.setID(id);
+            taskList.put(id,task);
         }
 
     }
@@ -43,9 +46,8 @@ public class TaskRegister {
     }
 
     public Task getTaskWithId(int id) {
-        int index = taskList.indexOf(new Task(id));
-        System.out.println("index: " + index);
-        return taskList.get(index);
+     Task task =  taskList.get(id);
+     return task;
     }
 
     private int generateId(){
