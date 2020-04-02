@@ -42,12 +42,14 @@ public class TimeInterval {
      * @return true if it was able to change the interval
      */
     public boolean setInterval(LocalTime from, LocalTime to) {
-        if (from.isBefore(to)) {
+
+        if (from.compareTo(to)!=1) {
             this.from = from;
             this.to = to;
             isEmpty = false;
             return true;
         } else {
+            System.out.println("TimeInterval rad51: false" );
             return false;
         }
 

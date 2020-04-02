@@ -47,7 +47,9 @@ public class PossibleTime {
      */
     public void setPossibleHours(LocalTime from, LocalTime to) {
         possibleHours.clearAllInterval();
-        possibleHours.addInterval(from, to);
+
+        boolean bol = possibleHours.addInterval(from, to);
+        System.out.println("Possible time: added " + bol);
     }
 
     /**

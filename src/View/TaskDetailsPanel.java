@@ -115,7 +115,7 @@ public class TaskDetailsPanel extends JPanel {
         lblDatesFrom = new JLabel("Date from:");
         lblDatesTo = new JLabel("To:");
         String[] dates = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12",
-                "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24","25","26","27","28","29","30","31"};
+                "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"};
         comboBoxDatesFrom = new JComboBox<>(dates);
         comboBoxDatesTo = new JComboBox<>(dates);
         btnAddDateInterval = new JButton("Add");
@@ -180,14 +180,13 @@ public class TaskDetailsPanel extends JPanel {
         add(scrollPane);
     }
 
-    public void setTaskTitle(String title){
+    public void setTaskTitle(String title) {
         tfTitle.setText(title);
     }
 
-    public String getTaskTitle(){
+    public String getTaskTitle() {
         return tfTitle.getText();
     }
-
 
 
     public int getIntervalAmount() {
@@ -197,57 +196,96 @@ public class TaskDetailsPanel extends JPanel {
     }
 
     public TimeUnit getIntervalUnit() {
-        //TODO funkar detta? eller är det en string som ska göras om till en timeunit först?
-        return (TimeUnit) comboBoxTimeUnits.getSelectedItem();
+
+TimeUnit timeUnit = null;
+        switch (comboBoxTimeUnits.getSelectedItem().toString()){
+            case "hour":
+                timeUnit = TimeUnit.hour;
+                break;
+            case "day":
+                timeUnit = TimeUnit.day;
+                break;
+            case "week":
+                timeUnit = TimeUnit.week;
+                break;
+            case "month":
+                timeUnit = TimeUnit.month;
+                break;
+            case "year":
+                timeUnit = TimeUnit.year;
+                break;
+
+        }
+        System.out.println("Timeunit:" + timeUnit.toString());
+        return timeUnit;
+
     }
 
-    public void setTaskInterval(int amount, TimeUnit timeUnit ){
-        tfInterval.setText(String.valueOf(amount));
+    public void setTaskInterval(int amount, TimeUnit timeUnit) {
+        tfInterval.setText(amount + "");
         comboBoxTimeUnits.setSelectedItem(timeUnit);
     }
 
-    //TODO: ingen aning om detta funkar...
-    public void setPossibleHours(LocalTime from, LocalTime to){
-        comboBoxHoursFrom.setSelectedItem(from);
-        comboBoxHoursTo.setSelectedItem(to);
+
+    public void setPossibleHours(LocalTime from, LocalTime to) {
+        System.out.println("TaskDetailsPanel - set possibleHours: " + from.getHour() + " - " + to.getHour());
+        int fromInt = from.getHour();
+        int toInt = to.getHour();
+
+        comboBoxHoursFrom.setSelectedIndex(fromInt);
+        comboBoxHoursTo.setSelectedIndex(toInt);
+
     }
 
-    public LocalTime[] getPossibleHours(){
+    public LocalTime[] getPossibleHours() {
         LocalTime[] hours = new LocalTime[2];
-        hours[0] = (LocalTime) comboBoxHoursFrom.getSelectedItem();
-        hours[1] = (LocalTime) comboBoxHoursTo.getSelectedItem();
+
+        int hourFrom = comboBoxHoursFrom.getSelectedIndex();
+        int hourTo = comboBoxHoursTo.getSelectedIndex();
+
+        hours[0] = LocalTime.of(hourFrom, 0);
+        hours[1] = LocalTime.of(hourTo, 0);
+
         return hours;
     }
 
-    public void setPossibleDates(boolean[] dates){
-        int from = comboBoxDatesFrom.getSelectedIndex() -1;
-        int to = comboBoxDatesTo.getSelectedIndex() -1;
-        for (int i = 0; i < dates.length; i++){
-            if (i < from && i > to){
-                dates[i] = false;
-            } else {
-                dates[i] = true;
-            }
-        }
-    }
+    public void setPossibleDates(boolean[] dates) {
+        int from = -1;
+        int to = -1;
 
-    public boolean[] getPossibleDates(){
-        boolean[] dates = new boolean[31];
-        int from;
-        int to;
 
-        for (int i = 0; i < dates.length; i++){
-            if (dates[i]){
+        for (int i = 0; i < dates.length; i++) {
+            if (dates[i] == true && from == -1) {
                 from = i;
-            } else {
+            }
+            if (dates[i] == false && from != -1) {
                 to = i;
                 break;
+            }
+
+        }
+        comboBoxDatesFrom.setSelectedIndex(from);
+        comboBoxDatesTo.setSelectedIndex(to);
+
+    }
+
+    public boolean[] getPossibleDates() {
+        int from = comboBoxDatesFrom.getSelectedIndex();
+        int to = comboBoxDatesTo.getSelectedIndex();
+
+
+        boolean[] dates = new boolean[31];
+
+
+        for (int i = 0; i < dates.length; i++) {
+            if (i >= from && i < to) {
+                dates[i] = true;
             }
         }
         return dates;
     }
 
-    public void setPossibleWeekdays(boolean[] possibleWeekdays){
+    public void setPossibleWeekdays(boolean[] possibleWeekdays) {
         cbMonday.setSelected(possibleWeekdays[0]);
         cbTuesday.setSelected(possibleWeekdays[1]);
         cbWednesday.setSelected(possibleWeekdays[2]);
@@ -270,7 +308,7 @@ public class TaskDetailsPanel extends JPanel {
         return possibleWeekdays;
     }
 
-    public void setNotes(String notes){
+    public void setNotes(String notes) {
         taNotes.setText(notes);
     }
 
@@ -278,7 +316,7 @@ public class TaskDetailsPanel extends JPanel {
         return taNotes.getText();
     }
 
-    public void clearAllFields(){
+    public void clearAllFields() {
         tfTitle.setText("");
         tfInterval.setText("");
         comboBoxTimeUnits.setSelectedIndex(0);
@@ -286,25 +324,25 @@ public class TaskDetailsPanel extends JPanel {
         comboBoxHoursTo.setSelectedIndex(0);
         comboBoxDatesFrom.setSelectedIndex(0);
         comboBoxDatesTo.setSelectedIndex(0);
-        if(cbMonday.isSelected()){
+        if (cbMonday.isSelected()) {
             cbMonday.doClick();
         }
-        if(cbTuesday.isSelected()){
+        if (cbTuesday.isSelected()) {
             cbTuesday.doClick();
         }
-        if(cbWednesday.isSelected()){
+        if (cbWednesday.isSelected()) {
             cbWednesday.doClick();
         }
-        if(cbThursday.isSelected()){
+        if (cbThursday.isSelected()) {
             cbThursday.doClick();
         }
-        if(cbFriday.isSelected()){
+        if (cbFriday.isSelected()) {
             cbFriday.doClick();
         }
-        if(cbSaturday.isSelected()){
+        if (cbSaturday.isSelected()) {
             cbSaturday.doClick();
         }
-        if(cbSunday.isSelected()){
+        if (cbSunday.isSelected()) {
             cbSunday.doClick();
         }
         taNotes.setText("");
