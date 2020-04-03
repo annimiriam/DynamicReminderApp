@@ -1,12 +1,12 @@
 package Controller;
 
-import java.time.LocalTime;
-
-import View.MainFrame;
-import View.ButtonType;
 import Model.*;
+import View.ButtonType;
+import View.MainFrame;
 
 import javax.swing.*;
+import java.time.LocalTime;
+import java.util.Date;
 
 // Hej från oss i Malmö!
 
@@ -114,6 +114,11 @@ public class Controller {
         task.markAsDoneNow();
         System.out.println("Last performed: " + task.getLastPerformed().toString());
         updateGUI();
+    }
+
+    public void setLastPerformed(int taskId, Date date){
+        Task task = taskRegister.getTaskWithId(taskId);
+        task.setLastPerformed(date);
     }
 
     public void openTask(int taskId) {

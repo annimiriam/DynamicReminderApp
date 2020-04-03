@@ -65,7 +65,7 @@ public class TaskDetailsPanel extends JPanel {
     //last performed
     private JPanel lastPerformedPanel;
     private JLabel lblLastPerformed;
-    private JButton btnLastPerformed;
+    private JButton btnSetLastPerformed;
     private JButton btnMarkAsDoneNow;
     private JComboBox<String> comboBoxLastPerformedHour;
     //private JComboBox<String> comboBoxLastPerformedMinute;
@@ -172,7 +172,7 @@ public class TaskDetailsPanel extends JPanel {
         comboBoxLastPerformedDay = new JComboBox<>(dates);
         String[] months = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"};
         comboBoxLastPerformedMonth = new JComboBox<>(months);
-        btnLastPerformed = new JButton("Set");
+        btnSetLastPerformed = new JButton("Set");
         btnMarkAsDoneNow = new JButton("Just now");
         lastPerformedPanel = new JPanel();
         lastPerformedPanel.add(time);
@@ -180,7 +180,7 @@ public class TaskDetailsPanel extends JPanel {
         lastPerformedPanel.add(date);
         lastPerformedPanel.add(comboBoxLastPerformedDay);
         lastPerformedPanel.add(comboBoxLastPerformedMonth);
-        lastPerformedPanel.add(btnLastPerformed);
+        lastPerformedPanel.add(btnSetLastPerformed);
         initializeLastPerformed();
 
         savePanel = new JPanel();
@@ -413,7 +413,18 @@ public class TaskDetailsPanel extends JPanel {
                 controller.buttonPressed(ButtonType.SAVE);
             }
             if (e.getSource() == btnMarkAsDoneNow){
-                controller.buttonPressed(ButtonType.MARKASDONE); //TODO: eller alternativt kalla på markAsDone()-metoden, men då krävs Task-ID
+                controller.markTaskAsDone(taskId);
+            }
+            if (e.getSource() == btnSetLastPerformed){
+                int hour = comboBoxLastPerformedHour.getSelectedIndex();
+                int day = comboBoxLastPerformedDay.getSelectedIndex() + 1;
+                int month = comboBoxLastPerformedMonth.getSelectedIndex();
+                Calendar cal = Calendar.getInstance();
+                cal.set(Calendar.HOUR_OF_DAY, hour);
+                cal.set(Calendar.DAY_OF_MONTH, day);
+                cal.set(Calendar.MONTH, month);
+                Date date = cal.getTime();
+                controller.setLastPerformed(taskId, date);
             }
         }
     }
