@@ -8,6 +8,7 @@ public class FileHandler {
 
     public FileHandler(TaskRegister taskRegister){ //todo vet inte hur jag annars ska göra det
         this.taskRegister = taskRegister;
+        readFromFile(); //todo detta borde funka
     }
 
     public void saveToFile(){
@@ -22,14 +23,16 @@ public class FileHandler {
         }
     }
 
-    public void readFromFile(){
+    public TaskRegister readFromFile(){
         try(ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream("files/taskregister")))){
-            ois.readObject();
+            taskRegister =  (TaskRegister)ois.readObject();
+            System.out.println(taskRegister.toString());
         }catch(FileNotFoundException e){
             System.out.println("File not found");
             e.printStackTrace();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+        return taskRegister;
     }
 }
