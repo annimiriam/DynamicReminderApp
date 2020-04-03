@@ -46,7 +46,9 @@ public class TaskRegister implements Serializable {
 
     }
 
-
+public int getBiggestID(){
+        return lastId;
+}
 
     public Task getTaskWithId(int id) {
      Task task =  taskList.get(id);

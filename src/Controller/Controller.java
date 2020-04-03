@@ -25,6 +25,7 @@ public class Controller {
         UpdateThread updateThread = new UpdateThread(this);
         updateThread.start();
         fileHandler = new FileHandler(taskRegister);
+        loadTasksToGUI();
     }
 
 
@@ -118,9 +119,20 @@ public class Controller {
         frame.setCard("2");
     }
 
+    public void loadTasksToGUI(){
+        int size = taskRegister.getBiggestID();
+        for(int i =1; i<size;i++){
+           Task task =  taskRegister.getTaskWithId(i);
+           if(task!=null){
+                frame.addTask(task.getTitle(), task.getTimeUntil(), task.getTimeUnit(), task.getId());
+            }
+
+        }
+
+    }
+
     public void updateGUI() {
         frame.updateAllTasks();
-
     }
 
 
