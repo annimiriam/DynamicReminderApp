@@ -91,6 +91,7 @@ public class Controller {
         System.out.println("Task id: " + taskId);
         task.markAsDoneNow();
         System.out.println("Last performed: " + task.getLastPerformed().toString());
+        updateGUI();
     }
 
     public void openTask(int taskId) {
