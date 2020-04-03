@@ -10,7 +10,7 @@ import Controller.Controller;
 import Model.TimeUnit;
 
 /**
- * @author Cornelia Sköld
+ * @author Hanna My Jansson, Cornelia Sköld
  * @version 1.0
  */
 public class SingleTaskPanel extends JPanel {
@@ -70,6 +70,13 @@ public class SingleTaskPanel extends JPanel {
     public void updateDaysRemaining(int timeRemaining) {
         String text = generateText(null, timeRemaining);
         lblTask.setText(text);
+    }
+
+    public void updateTask(){
+        title = controller.getTaskTitle(taskId);
+        int timeRemaining = controller.getTaskTimeRemaining(taskId);
+        updateDaysRemaining(timeRemaining);
+        System.out.println("SingleTaskpanel - UpdateTask. timeRemaining: " + timeRemaining );
     }
 
     private class ButtonActionListener implements ActionListener {

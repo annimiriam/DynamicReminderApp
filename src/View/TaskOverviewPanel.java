@@ -35,4 +35,12 @@ public class TaskOverviewPanel extends JPanel{
         add(singleTaskPanels[index]);
         index++;
     }
+
+    public void updateAllTasks(){
+
+            for (int i = 0; i < singleTaskPanels.length; i++)
+                if(singleTaskPanels[i] != null) {
+                    singleTaskPanels[i].updateTask();
+                }
+    }
 }

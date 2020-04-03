@@ -22,6 +22,8 @@ public class Controller {
     public Controller() {
         frame = new MainFrame(this);
         taskRegister = new TaskRegister();
+        UpdateThread updateThread = new UpdateThread(this);
+        updateThread.start();
     }
 
 
@@ -106,11 +108,19 @@ public class Controller {
         frame.setCard("2");
     }
 
-    private void updateGUI() {
-
+    public void updateGUI() {
+        frame.updateAllTasks();
 
     }
 
+
+    public String getTaskTitle(int id){
+        return taskRegister.getTaskWithId(id).getTitle();
+    }
+
+    public int getTaskTimeRemaining(int id){
+        return taskRegister.getTaskWithId(id).getTimeUntil();
+    }
     public static void main(String[] args) {
         Controller controller = new Controller();
     }

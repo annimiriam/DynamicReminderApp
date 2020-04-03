@@ -136,12 +136,12 @@ public class Task implements Comparable<Object>{
         int time = preferredInterval.getTime();
         int timeUntil = -5;
 
-        //If the task is not yet done, return the preferredi interval
+        //If the task is not yet done, return the preferred interval
         if(lastPerformed == null){
             timeUntil = time;
         }else{
 
-            //calculates the time left of the task and returns it in the unit spcified in preferredIntervall.
+            //calculates the time left of the task and returns it in the unit specified in preferredInterval.
             Calendar cal = Calendar.getInstance();
             Date dateNow = cal.getTime();
             dateNow.compareTo(lastPerformed);
