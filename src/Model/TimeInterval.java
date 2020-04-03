@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.Serializable;
 import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.Date;
@@ -9,7 +10,7 @@ import java.util.Date;
  * @author Hanna My Jansson
  * @version 1.0
  */
-public class TimeInterval {
+public class TimeInterval implements Serializable {
     private LocalTime from;
     private LocalTime to;
     private boolean isEmpty;

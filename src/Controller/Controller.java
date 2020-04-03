@@ -16,6 +16,7 @@ import Model.*;
 public class Controller {
     private MainFrame frame;
     private TaskRegister taskRegister;
+    private FileHandler fileHandler;
     private int taskId;
 
     public Controller() {
@@ -23,6 +24,7 @@ public class Controller {
         taskRegister = new TaskRegister();
         UpdateThread updateThread = new UpdateThread(this);
         updateThread.start();
+        fileHandler = new FileHandler(taskRegister);
     }
 
 
@@ -87,6 +89,7 @@ public class Controller {
                 }
                 updateGUI();
                 frame.setCard("1");
+                fileHandler.saveToFile();
                 break;
         }
 

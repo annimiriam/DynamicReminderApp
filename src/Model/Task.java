@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -8,7 +9,7 @@ import java.util.Date;
  * @author Anni Johansson
  * @version 1.0
  */
-public class Task implements Comparable<Object>{
+public class Task implements Comparable<Object>, Serializable {
     private int id;     //TODO: Hur ger vi task ett id? Utifrån task-register?
     private String title;
     private String info;
@@ -199,5 +200,9 @@ public class Task implements Comparable<Object>{
         return Integer.compare(id,t.getId());
     }
 
+    public String toString(){
+        String str = "Task id: " + id + "\nTask title: " + title + "Task info: " + info; //todo lägg till mer sen? om vi vill ha det?
+        return str;
+    }
 
 }

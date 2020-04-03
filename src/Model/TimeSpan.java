@@ -1,5 +1,7 @@
 package Model;
 
+import java.io.Serializable;
+
 /**
  * Timespan sets the intervalls beetween how often a task needs to be done.
  *
@@ -7,7 +9,7 @@ package Model;
  * @version 1.0
  */
 
-public class TimeSpan {
+public class TimeSpan implements Serializable {
     private int time;
     private TimeUnit timeUnit;
 
