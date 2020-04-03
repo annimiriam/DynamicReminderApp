@@ -37,9 +37,10 @@ public class Controller {
                 frame.setCard("1");
                 break;
             case ADD:
-                frame.setCard("2");
+
                 frame.setDefaultFields();
                 frame.setSelectedTaskId(0);
+                frame.setCard("2");
                 break;
             case DELETE:
                 //frame.setCard("3");
