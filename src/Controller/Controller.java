@@ -27,6 +27,7 @@ public class Controller {
         UpdateThread updateThread = new UpdateThread(this);
         updateThread.start();
         fileHandler = new FileHandler(taskRegister);
+
         loadTasksToGUI();
     }
 
@@ -100,7 +101,7 @@ public class Controller {
                 }
                 updateGUI();
                 frame.setCard("1");
-                fileHandler.saveToFile();
+                fileHandler.saveToFile(); //todo flytta! Just nu sparar den bara 1? tror jag
                 break;
         }
 

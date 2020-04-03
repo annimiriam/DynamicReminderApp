@@ -10,6 +10,7 @@ import java.util.HashMap;
  */
 public class TaskRegister implements Serializable {
     private HashMap<Integer,Task> taskList;
+    private static final long serialVersionUID = 655296850; //gör så att man kan läsa från filen
 
     private int lastId;
 
@@ -61,8 +62,10 @@ public int getBiggestID(){
     }
 
     public String toString(){
-        //TODO hur kommer jag åt task här?? utan att skapa en ny eller lägga det i parenteserna?
+        //TODO Hur gör jag för att få ut mer än bara 1 task?
         String str = taskList.get(1).toString();
         return str;
     }
+
+
 }

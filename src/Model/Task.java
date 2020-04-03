@@ -203,7 +203,7 @@ public class Task implements Comparable<Object>, Serializable {
     }
 
     public String toString(){
-        String str = "Task id: " + id + "\nTask title: " + title + "Task info: " + info; //todo lägg till mer sen? om vi vill ha det?
+        String str = "Task id: " + id + "\nTask title: " + title + "\nTask info: " + info; //todo lägg till mer sen? om vi vill ha det?
         return str;
     }
 
