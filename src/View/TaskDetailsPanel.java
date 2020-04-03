@@ -63,6 +63,16 @@ public class TaskDetailsPanel extends JPanel {
     private JPanel savePanel;
     private JButton btnSave;
 
+    //last performed
+    private JLabel lblLastPerformed;
+    private JButton btnLastPerformed;
+    private JComboBox<String> comboBoxLastPerformedHour;
+    private JComboBox<String> comboBoxLastPerformedMinute;
+    private JComboBox<String> comboBoxLastPerformedDay;
+    private JComboBox<String> comboBoxLastPerformedMonth;
+    private JComboBox<String> comboBoxLastPerformedYear;
+
+
     private JPanel panel;
     private JLabel emptyLabel = new JLabel(" ");
 
