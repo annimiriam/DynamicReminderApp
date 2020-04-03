@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.Serializable;
 import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.Date;
@@ -10,7 +11,7 @@ import java.util.Date;
  * @author Hanna My Jansson
  * @version 1.0
  */
-public class PossibleHours {
+public class PossibleHours implements Serializable {
     private boolean whenever;
     private TimeInterval[] intervals;
     private int freeIntervalIndex;

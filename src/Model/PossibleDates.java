@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -8,7 +9,7 @@ import java.util.Date;
  * @author Hanna My Jansson
  * @version 1.0
  */
-public class PossibleDates {
+public class PossibleDates implements Serializable {
     private boolean[] possibleDates;
 
 

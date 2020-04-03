@@ -16,12 +16,14 @@ import Model.*;
 public class Controller {
     private MainFrame frame;
     private TaskRegister taskRegister;
+    private FileHandler fileHandler;
 
     public Controller() {
         frame = new MainFrame(this);
         taskRegister = new TaskRegister();
         UpdateThread updateThread = new UpdateThread(this);
         updateThread.start();
+        fileHandler = new FileHandler(taskRegister);
     }
 
 
@@ -78,6 +80,7 @@ public class Controller {
                 System.out.println("Task added, Title: " + title + "possible hours: " + newTask.getPossibleTimeForExecution().getPossibleHours().toString());
                 frame.addTask(newTask.getTitle(), newTask.getTimeUntil(), newTask.getTimeUnit(), newTask.getId());
                 frame.setCard("1");
+                fileHandler.saveToFile();
                 break;
 
 

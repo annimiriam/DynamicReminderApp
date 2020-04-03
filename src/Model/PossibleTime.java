@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.Serializable;
 import java.time.LocalTime;
 import java.util.Date;
 
@@ -8,7 +9,7 @@ import java.util.Date;
  * @author Hanna My Jansson
  * @version 1.0
  */
-public class PossibleTime {
+public class PossibleTime implements Serializable {
     private PossibleHours possibleHours;
     private PossibleDates possibleDates;
     private  PossibleWeekDays possibleWeekDays;
