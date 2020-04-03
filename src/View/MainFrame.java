@@ -95,6 +95,10 @@ public class MainFrame extends JFrame {
         panel.getTaskOverviewPanel().addTask(title,timeRemaining, timeUnit, taskId);
     }
 
+    public void setDefaultFields(){
+        panel.getTaskDetailsPanel().setDefaultFields();
+    }
+
     //TODO uppdate metod för alla singlepanels i overveiw
 
 }

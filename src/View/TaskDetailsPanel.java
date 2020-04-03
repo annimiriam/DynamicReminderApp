@@ -316,33 +316,33 @@ TimeUnit timeUnit = null;
         return taNotes.getText();
     }
 
-    public void clearAllFields() {
+    public void setDefaultFields() {
         tfTitle.setText("");
         tfInterval.setText("");
         comboBoxTimeUnits.setSelectedIndex(0);
         comboBoxHoursFrom.setSelectedIndex(0);
-        comboBoxHoursTo.setSelectedIndex(0);
+        comboBoxHoursTo.setSelectedIndex(comboBoxHoursTo.getItemCount()-1);
         comboBoxDatesFrom.setSelectedIndex(0);
-        comboBoxDatesTo.setSelectedIndex(0);
-        if (cbMonday.isSelected()) {
+        comboBoxDatesTo.setSelectedIndex(comboBoxDatesTo.getItemCount()-1);
+        if (!cbMonday.isSelected()) {
             cbMonday.doClick();
         }
-        if (cbTuesday.isSelected()) {
+        if (!cbTuesday.isSelected()) {
             cbTuesday.doClick();
         }
-        if (cbWednesday.isSelected()) {
+        if (!cbWednesday.isSelected()) {
             cbWednesday.doClick();
         }
-        if (cbThursday.isSelected()) {
+        if (!cbThursday.isSelected()) {
             cbThursday.doClick();
         }
-        if (cbFriday.isSelected()) {
+        if (!cbFriday.isSelected()) {
             cbFriday.doClick();
         }
-        if (cbSaturday.isSelected()) {
+        if (!cbSaturday.isSelected()) {
             cbSaturday.doClick();
         }
-        if (cbSunday.isSelected()) {
+        if (!cbSunday.isSelected()) {
             cbSunday.doClick();
         }
         taNotes.setText("");
@@ -353,7 +353,6 @@ TimeUnit timeUnit = null;
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == btnSave) {
                 controller.buttonPressed(ButtonType.SAVE);
-                clearAllFields();
             }
         }
     }

@@ -1,8 +1,6 @@
 package Controller;
 
 import java.time.LocalTime;
-import java.util.Calendar;
-import java.util.Date;
 
 import View.MainFrame;
 import View.ButtonType;
@@ -28,10 +26,11 @@ public class Controller {
     public void buttonPressed(ButtonType button) {
         switch (button) {
             case TASKS:
-                frame.setCard("1"); //TODO: ta reda på varför 2 visar overview
+                frame.setCard("1");
                 break;
             case ADD:
-                frame.setCard("2"); //TODO: ta reda på varför 1 visar add
+                frame.setCard("2");
+                frame.setDefaultFields();
 
                 break;
             case DELETE:
