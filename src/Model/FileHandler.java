@@ -8,7 +8,11 @@ public class FileHandler {
 
     public FileHandler(TaskRegister taskRegister){ //todo vet inte hur jag annars ska göra det
         this.taskRegister = taskRegister;
-        readFromFile(); //todo detta borde funka
+       try {
+           readFromFile(); //todo detta borde funka
+       }catch (Exception e){
+           
+       }
     }
 
     public void saveToFile(){
