@@ -120,13 +120,60 @@ public class Task implements Comparable<Object>{
         this.nextNotification = nextNotification;
     }
 
+
+    public boolean[] getPossibleDates(){
+        return possibleTimeForExecution.getPossibleDates();
+    }
+
+    public boolean[] getPossibleWeekdays(){
+        return possibleTimeForExecution.getPossibleWeekdays();
+    }
+
+    public TimeInterval getPossibleTimeInterval(){
+        return possibleTimeForExecution.getPossibleHours();
+    }
     public int getTimeUntil(){
         int time = preferredInterval.getTime();
         int timeUntil = -5;
+
+        //If the task is not yet done, return the preferredi interval
         if(lastPerformed == null){
             timeUntil = time;
         }else{
-            timeUntil = time;
+
+            //calculates the time left of the task and returns it in the unit spcified in preferredIntervall.
+            Calendar cal = Calendar.getInstance();
+            Date dateNow = cal.getTime();
+            dateNow.compareTo(lastPerformed);
+
+            long millisecondsNOW = dateNow.getTime();
+            long millisecondsDONE = lastPerformed.getTime();
+            long millisecondsDIFFERENCE = millisecondsNOW-millisecondsDONE;
+            long minutesDIFFERENCE = millisecondsDIFFERENCE/60000;
+
+            int preferredIntervalInMinutes = preferredInterval.getInMinutes();
+            int timeUntilMINUTES = (int) (preferredIntervalInMinutes - minutesDIFFERENCE);
+
+            switch (preferredInterval.getTimeUnit()) {
+                case hour:
+                    timeUntil = timeUntilMINUTES/60;
+                    break;
+                case day:
+                    timeUntil = timeUntilMINUTES/(24 * 60);
+                    break;
+                case week:
+                    timeUntil = timeUntilMINUTES/ ( 7 * 24 * 60);
+                    break;
+                case month:
+                    timeUntil = timeUntilMINUTES / (30 * 24 * 60);
+                    break;
+                case year:
+                    timeUntil = timeUntilMINUTES /(365 * 24 * 60) ;
+                    break;
+            }
+
+
+
             //TODO
         }
 
@@ -137,6 +184,7 @@ public class Task implements Comparable<Object>{
     public TimeUnit getTimeUnit(){
         return preferredInterval.getTimeUnit();
     }
+
 
     public int getId() {
         return id;

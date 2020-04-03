@@ -17,20 +17,21 @@ public class TaskOverviewPanel extends JPanel{
     private int index;
 
 
+
     public TaskOverviewPanel(Controller controller, int width, int height) {
         this.controller = controller;
         this.width = width;
         this.height = height;
         singleTaskPanels = new SingleTaskPanel[30];
         index = 0;
-        setPreferredSize(new Dimension(width, height));
-
+        setPreferredSize(new Dimension(width,height+1000));
 
     }
 
-    public void addTask(String title, int timeRemaining, TimeUnit timeUnit) {
+    public void addTask(String title, int timeRemaining, TimeUnit timeUnit, int taskId) {
 
-        singleTaskPanels[index] = new SingleTaskPanel(title, timeRemaining, timeUnit);
+        singleTaskPanels[index] = new SingleTaskPanel(title, timeRemaining, timeUnit, controller);
+        singleTaskPanels[index].setTaskId(taskId);
         add(singleTaskPanels[index]);
         index++;
     }

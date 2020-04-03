@@ -2,6 +2,8 @@ package View;
 
 import javax.swing.*;
 import java.awt.*;
+import java.time.LocalTime;
+
 import Controller.*;
 import Model.TimeUnit;
 
@@ -36,23 +38,67 @@ public class MainFrame extends JFrame {
     }
 
 
-    public String getTitle(){
-        return panel.getTaskDetailsPanel().getTitle();
+    public String getTaskTitle(){
+        return panel.getTaskDetailsPanel().getTaskTitle();
     }
 
-    public String getInfo(){
-        return panel.getTaskDetailsPanel().getInfo();
+    public void setTaskTitle(String title){
+        panel.getTaskDetailsPanel().setTaskTitle(title);
     }
 
     public int getIntervalAmount(){
         return panel.getTaskDetailsPanel().getIntervalAmount();
     }
 
+
     public TimeUnit getIntervalUnit(){
         return panel.getTaskDetailsPanel().getIntervalUnit();
     }
 
-    public void addTask(String title, int timeRemaining, TimeUnit timeUnit){
-        panel.getTaskOverviewPanel().addTask(title,timeRemaining, timeUnit);
+    public void setTaskInterval(int amount, TimeUnit unit){
+        panel.getTaskDetailsPanel().setTaskInterval(amount, unit);
     }
+
+    public LocalTime[] getPossibleHours(){
+        return panel.getTaskDetailsPanel().getPossibleHours();
+    }
+
+    public void setPossibleHours(LocalTime from, LocalTime to){
+        panel.getTaskDetailsPanel().setPossibleHours(from, to);
+    }
+
+    public boolean[] getPossibleDates(){
+        return panel.getTaskDetailsPanel().getPossibleDates();
+    }
+
+    public void setPossibleDates(boolean[] dates){
+        panel.getTaskDetailsPanel().setPossibleDates(dates);
+    }
+
+    public boolean[] getPossibleWeekdays(){
+        return panel.getTaskDetailsPanel().getPossibleWeekdays();
+    }
+
+    public void setPossibleWeekdays(boolean[] possibleWeekdays){
+        panel.getTaskDetailsPanel().setPossibleWeekdays(possibleWeekdays);
+    }
+
+    public String getNotes(){
+        return panel.getTaskDetailsPanel().getNotes();
+    }
+
+    public void setNotes(String notes){
+        panel.getTaskDetailsPanel().setNotes(notes);
+    }
+
+    public void addTask(String title, int timeRemaining, TimeUnit timeUnit, int taskId){
+        panel.getTaskOverviewPanel().addTask(title,timeRemaining, timeUnit, taskId);
+    }
+
+    public void setDefaultFields(){
+        panel.getTaskDetailsPanel().setDefaultFields();
+    }
+
+    //TODO uppdate metod för alla singlepanels i overveiw
+
 }

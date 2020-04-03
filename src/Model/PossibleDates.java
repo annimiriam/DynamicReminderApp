@@ -50,6 +50,11 @@ public class PossibleDates {
         return whenever;
     }
 
+
+    public boolean[] getPossibleDates() {
+        return possibleDates;
+    }
+
     /**
      * Checks if the date is possible to perform the task
      * @param date the date checked if its a possible date

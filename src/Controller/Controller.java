@@ -1,7 +1,7 @@
 package Controller;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.time.LocalTime;
+
 import View.MainFrame;
 import View.ButtonType;
 import Model.*;
@@ -12,6 +12,7 @@ import Model.*;
  * @author Hanna My Jansson
  * @version 1.0
  */
+
 public class Controller {
     private MainFrame frame;
     private TaskRegister taskRegister;
@@ -25,10 +26,11 @@ public class Controller {
     public void buttonPressed(ButtonType button) {
         switch (button) {
             case TASKS:
-                frame.setCard("2"); //TODO: ta reda på varför 2 visar overview
+                frame.setCard("1");
                 break;
             case ADD:
-                frame.setCard("1"); //TODO: ta reda på varför 1 visar add
+                frame.setCard("2");
+                frame.setDefaultFields();
 
                 break;
             case DELETE:
@@ -39,37 +41,75 @@ public class Controller {
                 break;
             case STATISTICS:
                 //frame.setCard("5");
-                Calendar cal = Calendar.getInstance();
-                Date dateNow = cal.getTime();
+
 
                 break;
 
             case MARKASDONE:
 
 
-
                 break;
             case SAVE:
+                String title = frame.getTaskTitle();
+                String info = frame.getNotes();
 
-                String title = frame.getTitle();
-                String info = frame.getInfo();
+                //preferredIntervall
                 int intervalAmount = frame.getIntervalAmount();
                 TimeUnit timeUnit = frame.getIntervalUnit();
+                System.out.println("Controller - intervall: " + intervalAmount + " " + timeUnit);
                 TimeSpan preferredInterval = new TimeSpan(intervalAmount, timeUnit);
+
+
                 Task newTask = new Task(title, info, preferredInterval);
+
+                PossibleTime possibleTime = new PossibleTime();
+                possibleTime.setPossibleWeekDays(frame.getPossibleWeekdays());
+                possibleTime.setPossibleDates(frame.getPossibleDates());
+
+                LocalTime[] localTimes = frame.getPossibleHours();
+                System.out.println("Controller - save: possiblehour: " + localTimes[0] + " - " + localTimes[1]);
+                possibleTime.setPossibleHours(localTimes[0], localTimes[1]);
+
+                newTask.setPossibleTimeForExecution(possibleTime);
+
                 taskRegister.addTask(newTask);
-                frame.addTask(newTask.getTitle(), newTask.getTimeUntil(), newTask.getTimeUnit());
-                frame.setCard("2");
+                System.out.println("Task added, Title: " + title + "possible hours: " + newTask.getPossibleTimeForExecution().getPossibleHours().toString());
+                frame.addTask(newTask.getTitle(), newTask.getTimeUntil(), newTask.getTimeUnit(), newTask.getId());
+                frame.setCard("1");
                 break;
+
+
         }
 
 
     }
 
-    private void updateGUI(){
+    public void markTaskAsDone(int taskId) {
+        Task task = taskRegister.getTaskWithId(taskId);
+        System.out.println("Task id: " + taskId);
+        task.markAsDoneNow();
+        System.out.println("Last performed: " + task.getLastPerformed().toString());
+    }
+
+    public void openTask(int taskId) {
+        Task task = taskRegister.getTaskWithId(taskId);
+
+        frame.setTaskInterval(task.getPreferredInterval().getTime(), task.getTimeUnit());
+        frame.setTaskTitle(task.getTitle());
+        frame.setNotes(task.getInfo());
+        frame.setPossibleDates(task.getPossibleDates());
+        frame.setPossibleWeekdays(task.getPossibleWeekdays());
+        TimeInterval timeInterval = task.getPossibleTimeInterval();
+        if (timeInterval != null)
+            frame.setPossibleHours(timeInterval.getFrom(), timeInterval.getTo());
+        frame.setCard("2");
+    }
+
+    private void updateGUI() {
 
 
     }
+
     public static void main(String[] args) {
         Controller controller = new Controller();
     }

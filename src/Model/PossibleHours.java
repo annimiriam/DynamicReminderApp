@@ -6,6 +6,7 @@ import java.util.Date;
 
 /**
  * Stores the hours possible, for a task to be done, in an array.
+ *
  * @author Hanna My Jansson
  * @version 1.0
  */
@@ -23,8 +24,9 @@ public class PossibleHours {
 
     /**
      * Adds a interval to the array of intervals
+     *
      * @param from, the beginning of the interval
-     * @param to, object then end of the interval
+     * @param to,   object then end of the interval
      * @return true if it added the interval, otherwise false.
      */
     public boolean addInterval(Date from, Date to) {
@@ -51,10 +53,15 @@ public class PossibleHours {
 
     }
 
+    public TimeInterval getPossibleTimeInterval() {
+        return intervals[0];
+    }
+
     /**
      * Adds a interval to the array of intervals
+     *
      * @param timeFrom the beginning of the interval
-     * @param timeTo object then end of the interval
+     * @param timeTo   object then end of the interval
      * @return true if it was able to add the interval
      */
     public boolean addInterval(LocalTime timeFrom, LocalTime timeTo) {
@@ -63,7 +70,6 @@ public class PossibleHours {
             return false;
 
         intervals[freeIntervalIndex].setInterval(timeFrom, timeTo);
-
         whenever = false;
         return true;
 
@@ -73,7 +79,7 @@ public class PossibleHours {
      * Deletes all intervals in the array
      */
     public void clearAllInterval() {
-        for (int i=0; i<intervals.length;i++){
+        for (int i = 0; i < intervals.length; i++) {
             intervals[i] = new TimeInterval();
         }
         whenever = true;
@@ -82,6 +88,7 @@ public class PossibleHours {
 
     /**
      * Checks if the date is possible
+     *
      * @param date the date to be checked
      * @return true if its possible
      */
