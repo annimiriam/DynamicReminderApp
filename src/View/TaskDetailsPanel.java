@@ -7,7 +7,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.time.LocalTime;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * @author Cornelia Sköld & Hanna My Jansson
@@ -64,12 +67,12 @@ public class TaskDetailsPanel extends JPanel {
     private JPanel lastPerformedPanel;
     private JLabel lblLastPerformed;
     private JButton btnLastPerformed;
+    private JButton btnMarkAsDoneNow;
     private JComboBox<String> comboBoxLastPerformedHour;
     //private JComboBox<String> comboBoxLastPerformedMinute;
     private JComboBox<String> comboBoxLastPerformedDay;
     private JComboBox<String> comboBoxLastPerformedMonth;
     //private JComboBox<String> comboBoxLastPerformedYear;
-
 
     private JPanel panel;
     private JLabel emptyLabel = new JLabel(" ");
@@ -164,13 +167,14 @@ public class TaskDetailsPanel extends JPanel {
         //last performed
         lblLastPerformed = new JLabel("  Last time I did this was: ");
         lblLastPerformed.setFont(new Font("Arial", Font.BOLD, 14));
-        JLabel time = new JLabel("time: ");
+        JLabel time = new JLabel("Or set time: ");
         JLabel date = new JLabel("date: ");
         comboBoxLastPerformedHour = new JComboBox<>(hours);
         comboBoxLastPerformedDay = new JComboBox<>(dates);
         String[] months = {"01","02","03","04","05","06","07","08","09","10","11","12"};
         comboBoxLastPerformedMonth = new JComboBox<>(months);
         btnLastPerformed = new JButton("Set");
+        btnMarkAsDoneNow = new JButton("Just now");
         lastPerformedPanel = new JPanel();
         lastPerformedPanel.add(time);
         lastPerformedPanel.add(comboBoxLastPerformedHour);
@@ -201,6 +205,7 @@ public class TaskDetailsPanel extends JPanel {
         panel.add(lblNotes);
         panel.add(taNotes);
         panel.add(lblLastPerformed);
+        panel.add(btnMarkAsDoneNow);
         panel.add(lastPerformedPanel);
         panel.add(emptyLabel);
         panel.add(savePanel);
