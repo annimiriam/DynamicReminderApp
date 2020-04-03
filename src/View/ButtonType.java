@@ -11,5 +11,5 @@ public enum ButtonType {
     CALENDAR,
     STATISTICS,
     SAVE,
-    MARKASDONE
+    MARKASDONE,
 }

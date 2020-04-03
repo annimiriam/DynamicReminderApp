@@ -7,7 +7,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.Date;
@@ -171,7 +170,7 @@ public class TaskDetailsPanel extends JPanel {
         JLabel date = new JLabel("date: ");
         comboBoxLastPerformedHour = new JComboBox<>(hours);
         comboBoxLastPerformedDay = new JComboBox<>(dates);
-        String[] months = {"01","02","03","04","05","06","07","08","09","10","11","12"};
+        String[] months = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"};
         comboBoxLastPerformedMonth = new JComboBox<>(months);
         btnLastPerformed = new JButton("Set");
         btnMarkAsDoneNow = new JButton("Just now");
@@ -182,6 +181,7 @@ public class TaskDetailsPanel extends JPanel {
         lastPerformedPanel.add(comboBoxLastPerformedDay);
         lastPerformedPanel.add(comboBoxLastPerformedMonth);
         lastPerformedPanel.add(btnLastPerformed);
+        initializeLastPerformed();
 
         savePanel = new JPanel();
         btnSave = new JButton("Save task!");
@@ -217,6 +217,13 @@ public class TaskDetailsPanel extends JPanel {
         add(scrollPane);
     }
 
+    public void initializeLastPerformed(){
+        Calendar cal = Calendar.getInstance();
+        comboBoxLastPerformedHour.setSelectedIndex(cal.get(Calendar.HOUR_OF_DAY));
+        comboBoxLastPerformedDay.setSelectedIndex(cal.get(Calendar.DAY_OF_MONTH) -1);
+        comboBoxLastPerformedMonth.setSelectedIndex(cal.get(Calendar.MONTH));
+    }
+
     public void setTaskTitle(String title) {
         tfTitle.setText(title);
     }
@@ -234,8 +241,8 @@ public class TaskDetailsPanel extends JPanel {
 
     public TimeUnit getIntervalUnit() {
 
-TimeUnit timeUnit = null;
-        switch (comboBoxTimeUnits.getSelectedItem().toString()){
+        TimeUnit timeUnit = null;
+        switch (comboBoxTimeUnits.getSelectedItem().toString()) {
             case "hour":
                 timeUnit = TimeUnit.hour;
                 break;
@@ -353,14 +360,22 @@ TimeUnit timeUnit = null;
         return taNotes.getText();
     }
 
+    public void setLastPerformed(Date date){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        comboBoxLastPerformedHour.setSelectedIndex(cal.get(Calendar.HOUR_OF_DAY));
+        comboBoxLastPerformedDay.setSelectedIndex(cal.get(Calendar.DAY_OF_MONTH) -1);
+        comboBoxLastPerformedMonth.setSelectedIndex(cal.get(Calendar.MONTH));
+    }
+
     public void setDefaultFields() {
         tfTitle.setText("");
         tfInterval.setText("");
         comboBoxTimeUnits.setSelectedIndex(0);
         comboBoxHoursFrom.setSelectedIndex(0);
-        comboBoxHoursTo.setSelectedIndex(comboBoxHoursTo.getItemCount()-1);
+        comboBoxHoursTo.setSelectedIndex(comboBoxHoursTo.getItemCount() - 1);
         comboBoxDatesFrom.setSelectedIndex(0);
-        comboBoxDatesTo.setSelectedIndex(comboBoxDatesTo.getItemCount()-1);
+        comboBoxDatesTo.setSelectedIndex(comboBoxDatesTo.getItemCount() - 1);
         if (!cbMonday.isSelected()) {
             cbMonday.doClick();
         }
@@ -386,7 +401,7 @@ TimeUnit timeUnit = null;
 
     }
 
-    public void setTaskId(int taskId){
+    public void setTaskId(int taskId) {
         this.taskId = taskId;
     }
 
@@ -398,6 +413,9 @@ TimeUnit timeUnit = null;
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == btnSave) {
                 controller.buttonPressed(ButtonType.SAVE);
+            }
+            if (e.getSource() == btnMarkAsDoneNow){
+                controller.buttonPressed(ButtonType.MARKASDONE); //TODO: eller alternativt kalla på markAsDone()-metoden, men då krävs Task-ID
             }
         }
     }
