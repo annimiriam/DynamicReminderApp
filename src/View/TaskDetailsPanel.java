@@ -59,6 +59,17 @@ public class TaskDetailsPanel extends JPanel {
     private JPanel savePanel;
     private JButton btnSave;
 
+    //last performed
+    private JPanel lastPerformedPanel;
+    private JLabel lblLastPerformed;
+    private JButton btnLastPerformed;
+    private JComboBox<String> comboBoxLastPerformedHour;
+    //private JComboBox<String> comboBoxLastPerformedMinute;
+    private JComboBox<String> comboBoxLastPerformedDay;
+    private JComboBox<String> comboBoxLastPerformedMonth;
+    //private JComboBox<String> comboBoxLastPerformedYear;
+
+
     private JPanel panel;
     private JLabel emptyLabel = new JLabel(" ");
 
@@ -149,6 +160,24 @@ public class TaskDetailsPanel extends JPanel {
         lblNotes.setFont(new Font("Arial", Font.BOLD, 14));
         taNotes = new JTextArea();
 
+        //last performed
+        lblLastPerformed = new JLabel("  Last time I did this was: ");
+        lblLastPerformed.setFont(new Font("Arial", Font.BOLD, 14));
+        JLabel time = new JLabel("time: ");
+        JLabel date = new JLabel("date: ");
+        comboBoxLastPerformedHour = new JComboBox<>(hours);
+        comboBoxLastPerformedDay = new JComboBox<>(dates);
+        String[] months = {"01","02","03","04","05","06","07","08","09","10","11","12"};
+        comboBoxLastPerformedMonth = new JComboBox<>(months);
+        btnLastPerformed = new JButton("Set");
+        lastPerformedPanel = new JPanel();
+        lastPerformedPanel.add(time);
+        lastPerformedPanel.add(comboBoxLastPerformedHour);
+        lastPerformedPanel.add(date);
+        lastPerformedPanel.add(comboBoxLastPerformedDay);
+        lastPerformedPanel.add(comboBoxLastPerformedMonth);
+        lastPerformedPanel.add(btnLastPerformed);
+
         savePanel = new JPanel();
         btnSave = new JButton("Save task!");
         btnSave.addActionListener(new ButtonActionListener());
@@ -170,6 +199,8 @@ public class TaskDetailsPanel extends JPanel {
         panel.add(emptyLabel);
         panel.add(lblNotes);
         panel.add(taNotes);
+        panel.add(lblLastPerformed);
+        panel.add(lastPerformedPanel);
         panel.add(emptyLabel);
         panel.add(savePanel);
 
@@ -316,33 +347,33 @@ TimeUnit timeUnit = null;
         return taNotes.getText();
     }
 
-    public void clearAllFields() {
+    public void setDefaultFields() {
         tfTitle.setText("");
         tfInterval.setText("");
         comboBoxTimeUnits.setSelectedIndex(0);
         comboBoxHoursFrom.setSelectedIndex(0);
-        comboBoxHoursTo.setSelectedIndex(0);
+        comboBoxHoursTo.setSelectedIndex(comboBoxHoursTo.getItemCount()-1);
         comboBoxDatesFrom.setSelectedIndex(0);
-        comboBoxDatesTo.setSelectedIndex(0);
-        if (cbMonday.isSelected()) {
+        comboBoxDatesTo.setSelectedIndex(comboBoxDatesTo.getItemCount()-1);
+        if (!cbMonday.isSelected()) {
             cbMonday.doClick();
         }
-        if (cbTuesday.isSelected()) {
+        if (!cbTuesday.isSelected()) {
             cbTuesday.doClick();
         }
-        if (cbWednesday.isSelected()) {
+        if (!cbWednesday.isSelected()) {
             cbWednesday.doClick();
         }
-        if (cbThursday.isSelected()) {
+        if (!cbThursday.isSelected()) {
             cbThursday.doClick();
         }
-        if (cbFriday.isSelected()) {
+        if (!cbFriday.isSelected()) {
             cbFriday.doClick();
         }
-        if (cbSaturday.isSelected()) {
+        if (!cbSaturday.isSelected()) {
             cbSaturday.doClick();
         }
-        if (cbSunday.isSelected()) {
+        if (!cbSunday.isSelected()) {
             cbSunday.doClick();
         }
         taNotes.setText("");
@@ -353,7 +384,6 @@ TimeUnit timeUnit = null;
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == btnSave) {
                 controller.buttonPressed(ButtonType.SAVE);
-                clearAllFields();
             }
         }
     }

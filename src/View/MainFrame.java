@@ -98,6 +98,10 @@ public class MainFrame extends JFrame {
         panel.getTaskOverviewPanel().updateAllTasks();
     }
 
+    public void setDefaultFields(){
+        panel.getTaskDetailsPanel().setDefaultFields();
+    }
+
     //TODO uppdate metod för alla singlepanels i overveiw
 
 }

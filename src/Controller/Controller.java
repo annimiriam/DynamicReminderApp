@@ -1,8 +1,6 @@
 package Controller;
 
 import java.time.LocalTime;
-import java.util.Calendar;
-import java.util.Date;
 
 import View.MainFrame;
 import View.ButtonType;
@@ -34,6 +32,7 @@ public class Controller {
                 break;
             case ADD:
                 frame.setCard("2");
+                frame.setDefaultFields();
 
                 break;
             case DELETE:
