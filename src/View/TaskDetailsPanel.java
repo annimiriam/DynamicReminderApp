@@ -15,6 +15,7 @@ import java.time.LocalTime;
  */
 
 public class TaskDetailsPanel extends JPanel {
+    private int taskId;
     private int width, height;
     private Controller controller;
     private JScrollPane scrollPane;
@@ -378,6 +379,14 @@ TimeUnit timeUnit = null;
         }
         taNotes.setText("");
 
+    }
+
+    public void setTaskId(int taskId){
+        this.taskId = taskId;
+    }
+
+    public int getTaskId() {
+        return taskId;
     }
 
     private class ButtonActionListener implements ActionListener {

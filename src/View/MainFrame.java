@@ -33,75 +33,84 @@ public class MainFrame extends JFrame {
         pack();
         setVisible(true);
     }
-    public void setCard(String cardNbr){
+
+    public void setCard(String cardNbr) {
         panel.setCard(cardNbr);
     }
 
 
-    public String getTaskTitle(){
+    public String getTaskTitle() {
         return panel.getTaskDetailsPanel().getTaskTitle();
     }
 
-    public void setTaskTitle(String title){
+    public void setTaskTitle(String title) {
         panel.getTaskDetailsPanel().setTaskTitle(title);
     }
 
-    public int getIntervalAmount(){
+    public int getIntervalAmount() {
         return panel.getTaskDetailsPanel().getIntervalAmount();
     }
 
 
-    public TimeUnit getIntervalUnit(){
+    public TimeUnit getIntervalUnit() {
         return panel.getTaskDetailsPanel().getIntervalUnit();
     }
 
-    public void setTaskInterval(int amount, TimeUnit unit){
+    public void setTaskInterval(int amount, TimeUnit unit) {
         panel.getTaskDetailsPanel().setTaskInterval(amount, unit);
     }
 
-    public LocalTime[] getPossibleHours(){
+    public LocalTime[] getPossibleHours() {
         return panel.getTaskDetailsPanel().getPossibleHours();
     }
 
-    public void setPossibleHours(LocalTime from, LocalTime to){
+    public void setPossibleHours(LocalTime from, LocalTime to) {
         panel.getTaskDetailsPanel().setPossibleHours(from, to);
     }
 
-    public boolean[] getPossibleDates(){
+    public boolean[] getPossibleDates() {
         return panel.getTaskDetailsPanel().getPossibleDates();
     }
 
-    public void setPossibleDates(boolean[] dates){
+    public void setPossibleDates(boolean[] dates) {
         panel.getTaskDetailsPanel().setPossibleDates(dates);
     }
 
-    public boolean[] getPossibleWeekdays(){
+    public boolean[] getPossibleWeekdays() {
         return panel.getTaskDetailsPanel().getPossibleWeekdays();
     }
 
-    public void setPossibleWeekdays(boolean[] possibleWeekdays){
+    public void setPossibleWeekdays(boolean[] possibleWeekdays) {
         panel.getTaskDetailsPanel().setPossibleWeekdays(possibleWeekdays);
     }
 
-    public String getNotes(){
+    public String getNotes() {
         return panel.getTaskDetailsPanel().getNotes();
     }
 
-    public void setNotes(String notes){
+    public void setNotes(String notes) {
         panel.getTaskDetailsPanel().setNotes(notes);
     }
 
-    public void addTask(String title, int timeRemaining, TimeUnit timeUnit, int taskId){
-        panel.getTaskOverviewPanel().addTask(title,timeRemaining, timeUnit, taskId);
+    public void addTask(String title, int timeRemaining, TimeUnit timeUnit, int taskId) {
+        panel.getTaskOverviewPanel().addTask(title, timeRemaining, timeUnit, taskId);
     }
-    public void updateAllTasks(){
+
+    public void updateAllTasks() {
         panel.getTaskOverviewPanel().updateAllTasks();
     }
 
-    public void setDefaultFields(){
+    public void setDefaultFields() {
         panel.getTaskDetailsPanel().setDefaultFields();
     }
 
-    //TODO uppdate metod för alla singlepanels i overveiw
+    public int getSelectedTaskId() {
+        return panel.getTaskDetailsPanel().getTaskId();
+
+    }
+
+    public void setSelectedTaskId(int id){
+        panel.getTaskDetailsPanel().setTaskId(id);
+    }
 
 }

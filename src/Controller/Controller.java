@@ -16,6 +16,7 @@ import Model.*;
 public class Controller {
     private MainFrame frame;
     private TaskRegister taskRegister;
+    private int taskId;
 
     public Controller() {
         frame = new MainFrame(this);
@@ -33,7 +34,7 @@ public class Controller {
             case ADD:
                 frame.setCard("2");
                 frame.setDefaultFields();
-
+                frame.setSelectedTaskId(0);
                 break;
             case DELETE:
                 //frame.setCard("3");
@@ -52,6 +53,9 @@ public class Controller {
 
                 break;
             case SAVE:
+                Task task = null;
+                int selectedTaskId = frame.getSelectedTaskId();
+
                 String title = frame.getTaskTitle();
                 String info = frame.getNotes();
 
@@ -61,26 +65,29 @@ public class Controller {
                 System.out.println("Controller - intervall: " + intervalAmount + " " + timeUnit);
                 TimeSpan preferredInterval = new TimeSpan(intervalAmount, timeUnit);
 
-
-                Task newTask = new Task(title, info, preferredInterval);
-
                 PossibleTime possibleTime = new PossibleTime();
                 possibleTime.setPossibleWeekDays(frame.getPossibleWeekdays());
                 possibleTime.setPossibleDates(frame.getPossibleDates());
-
                 LocalTime[] localTimes = frame.getPossibleHours();
-                System.out.println("Controller - save: possiblehour: " + localTimes[0] + " - " + localTimes[1]);
                 possibleTime.setPossibleHours(localTimes[0], localTimes[1]);
 
-                newTask.setPossibleTimeForExecution(possibleTime);
+                if (selectedTaskId <= 0) {
+                    task = new Task(title, info, preferredInterval);
+                    task.setPossibleTimeForExecution(possibleTime);
+                    taskRegister.addTask(task);
+                    frame.addTask(task.getTitle(), task.getTimeUntil(), task.getTimeUnit(), task.getId());
 
-                taskRegister.addTask(newTask);
-                System.out.println("Task added, Title: " + title + "possible hours: " + newTask.getPossibleTimeForExecution().getPossibleHours().toString());
-                frame.addTask(newTask.getTitle(), newTask.getTimeUntil(), newTask.getTimeUnit(), newTask.getId());
+                } else {
+                    task = taskRegister.getTaskWithId(selectedTaskId);
+                    task.setInfo(info);
+                    task.setTitle(title);
+                    task.setPreferredInterval(preferredInterval);
+                    task.setPossibleTimeForExecution(possibleTime);
+
+                }
+                updateGUI();
                 frame.setCard("1");
                 break;
-
-
         }
 
 
@@ -96,7 +103,7 @@ public class Controller {
 
     public void openTask(int taskId) {
         Task task = taskRegister.getTaskWithId(taskId);
-
+        frame.setSelectedTaskId(taskId);
         frame.setTaskInterval(task.getPreferredInterval().getTime(), task.getTimeUnit());
         frame.setTaskTitle(task.getTitle());
         frame.setNotes(task.getInfo());
@@ -114,13 +121,14 @@ public class Controller {
     }
 
 
-    public String getTaskTitle(int id){
+    public String getTaskTitle(int id) {
         return taskRegister.getTaskWithId(id).getTitle();
     }
 
-    public int getTaskTimeRemaining(int id){
+    public int getTaskTimeRemaining(int id) {
         return taskRegister.getTaskWithId(id).getTimeUntil();
     }
+
     public static void main(String[] args) {
         Controller controller = new Controller();
     }
