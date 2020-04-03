@@ -6,6 +6,8 @@ import View.MainFrame;
 import View.ButtonType;
 import Model.*;
 
+import javax.swing.*;
+
 // Hej från oss i Malmö!
 
 /**
@@ -56,6 +58,7 @@ public class Controller {
 
                 break;
             case SAVE:
+
                 Task task = null;
                 int selectedTaskId = frame.getSelectedTaskId();
 
@@ -63,7 +66,14 @@ public class Controller {
                 String info = frame.getNotes();
 
                 //preferredIntervall
-                int intervalAmount = frame.getIntervalAmount();
+                int intervalAmount = 0;
+                try {
+                    intervalAmount = Integer.parseInt(frame.getIntervalAmount());
+                }catch (Exception e){
+                    JOptionPane.showMessageDialog(frame, "You need to add a preferred interval as a number");
+                    break;
+                }
+
                 TimeUnit timeUnit = frame.getIntervalUnit();
                 System.out.println("Controller - intervall: " + intervalAmount + " " + timeUnit);
                 TimeSpan preferredInterval = new TimeSpan(intervalAmount, timeUnit);

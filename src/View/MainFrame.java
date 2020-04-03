@@ -47,7 +47,7 @@ public class MainFrame extends JFrame {
         panel.getTaskDetailsPanel().setTaskTitle(title);
     }
 
-    public int getIntervalAmount() {
+    public String getIntervalAmount() {
         return panel.getTaskDetailsPanel().getIntervalAmount();
     }
 
