@@ -60,13 +60,14 @@ public class TaskDetailsPanel extends JPanel {
     private JButton btnSave;
 
     //last performed
+    private JPanel lastPerformedPanel;
     private JLabel lblLastPerformed;
     private JButton btnLastPerformed;
     private JComboBox<String> comboBoxLastPerformedHour;
-    private JComboBox<String> comboBoxLastPerformedMinute;
+    //private JComboBox<String> comboBoxLastPerformedMinute;
     private JComboBox<String> comboBoxLastPerformedDay;
     private JComboBox<String> comboBoxLastPerformedMonth;
-    private JComboBox<String> comboBoxLastPerformedYear;
+    //private JComboBox<String> comboBoxLastPerformedYear;
 
 
     private JPanel panel;
@@ -159,6 +160,22 @@ public class TaskDetailsPanel extends JPanel {
         lblNotes.setFont(new Font("Arial", Font.BOLD, 14));
         taNotes = new JTextArea();
 
+        //last performed
+        lblLastPerformed = new JLabel("  Last time I did this was: ");
+        lblLastPerformed.setFont(new Font("Arial", Font.BOLD, 14));
+        JLabel time = new JLabel("time: ");
+        JLabel date = new JLabel("date: ");
+        comboBoxLastPerformedHour = new JComboBox<>(hours);
+        comboBoxLastPerformedDay = new JComboBox<>(dates);
+        String[] months = {"01","02","03","04","05","06","07","08","09","10","11","12"};
+        comboBoxLastPerformedMonth = new JComboBox<>(months);
+        lastPerformedPanel = new JPanel();
+        lastPerformedPanel.add(time);
+        lastPerformedPanel.add(comboBoxLastPerformedHour);
+        lastPerformedPanel.add(date);
+        lastPerformedPanel.add(comboBoxLastPerformedDay);
+        lastPerformedPanel.add(comboBoxLastPerformedMonth);
+
         savePanel = new JPanel();
         btnSave = new JButton("Save task!");
         btnSave.addActionListener(new ButtonActionListener());
@@ -180,6 +197,8 @@ public class TaskDetailsPanel extends JPanel {
         panel.add(emptyLabel);
         panel.add(lblNotes);
         panel.add(taNotes);
+        panel.add(lblLastPerformed);
+        panel.add(lastPerformedPanel);
         panel.add(emptyLabel);
         panel.add(savePanel);
 
