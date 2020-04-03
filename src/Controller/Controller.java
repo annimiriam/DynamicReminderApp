@@ -19,7 +19,6 @@ public class Controller {
     private MainFrame frame;
     private TaskRegister taskRegister;
     private FileHandler fileHandler;
-    private int taskId;
 
     public Controller() {
         frame = new MainFrame(this);
