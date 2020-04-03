@@ -375,25 +375,26 @@ public class TaskDetailsPanel extends JPanel {
         comboBoxDatesFrom.setSelectedIndex(0);
         comboBoxDatesTo.setSelectedIndex(comboBoxDatesTo.getItemCount() - 1);
         if (!cbMonday.isSelected()) {
-            cbMonday.doClick();
+            cbMonday.setSelected(true);
         }
         if (!cbTuesday.isSelected()) {
-            cbTuesday.doClick();
+            cbTuesday.setSelected(true);
         }
         if (!cbWednesday.isSelected()) {
-            cbWednesday.doClick();
+            cbWednesday.setSelected(true);
         }
         if (!cbThursday.isSelected()) {
-            cbThursday.doClick();
+            cbThursday.setSelected(true);
+
         }
         if (!cbFriday.isSelected()) {
-            cbFriday.doClick();
+            cbFriday.setSelected(true);
         }
         if (!cbSaturday.isSelected()) {
-            cbSaturday.doClick();
+            cbSaturday.setSelected(true);
         }
         if (!cbSunday.isSelected()) {
-            cbSunday.doClick();
+            cbSunday.setSelected(true);
         }
         taNotes.setText("");
 
