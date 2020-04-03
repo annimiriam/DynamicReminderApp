@@ -169,12 +169,14 @@ public class TaskDetailsPanel extends JPanel {
         comboBoxLastPerformedDay = new JComboBox<>(dates);
         String[] months = {"01","02","03","04","05","06","07","08","09","10","11","12"};
         comboBoxLastPerformedMonth = new JComboBox<>(months);
+        btnLastPerformed = new JButton("Set");
         lastPerformedPanel = new JPanel();
         lastPerformedPanel.add(time);
         lastPerformedPanel.add(comboBoxLastPerformedHour);
         lastPerformedPanel.add(date);
         lastPerformedPanel.add(comboBoxLastPerformedDay);
         lastPerformedPanel.add(comboBoxLastPerformedMonth);
+        lastPerformedPanel.add(btnLastPerformed);
 
         savePanel = new JPanel();
         btnSave = new JButton("Save task!");
