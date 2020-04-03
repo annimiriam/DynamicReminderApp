@@ -28,10 +28,10 @@ public class Controller {
     public void buttonPressed(ButtonType button) {
         switch (button) {
             case TASKS:
-                frame.setCard("1"); //TODO: ta reda på varför 2 visar overview
+                frame.setCard("1");
                 break;
             case ADD:
-                frame.setCard("2"); //TODO: ta reda på varför 1 visar add
+                frame.setCard("2");
 
                 break;
             case DELETE:
