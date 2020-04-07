@@ -114,6 +114,7 @@ public class Controller {
         task.markAsDoneNow();
         System.out.println("Last performed: " + task.getLastPerformed().toString());
         updateGUI();
+        frame.setCard("1");
     }
 
     public void setLastPerformed(int taskId, Date date){

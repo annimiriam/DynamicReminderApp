@@ -76,6 +76,8 @@ public class TaskDetailsPanel extends JPanel {
     private JPanel panel;
     private JLabel emptyLabel = new JLabel(" ");
 
+    private ButtonActionListener listener = new ButtonActionListener();
+
     public TaskDetailsPanel(Controller controller, int width, int height) {
         this.controller = controller;
         this.width = width;
@@ -173,7 +175,9 @@ public class TaskDetailsPanel extends JPanel {
         String[] months = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"};
         comboBoxLastPerformedMonth = new JComboBox<>(months);
         btnSetLastPerformed = new JButton("Set");
+        btnSetLastPerformed.addActionListener(listener);
         btnMarkAsDoneNow = new JButton("Just now");
+        btnMarkAsDoneNow.addActionListener(listener);
         lastPerformedPanel = new JPanel();
         lastPerformedPanel.add(time);
         lastPerformedPanel.add(comboBoxLastPerformedHour);
@@ -185,7 +189,7 @@ public class TaskDetailsPanel extends JPanel {
 
         savePanel = new JPanel();
         btnSave = new JButton("Save task!");
-        btnSave.addActionListener(new ButtonActionListener());
+        btnSave.addActionListener(listener);
         savePanel.add(btnSave);
 
         panel = new JPanel(new GridLayout(18, 1));
