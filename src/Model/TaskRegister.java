@@ -65,7 +65,6 @@ public int getBiggestID(){
     }
 
     public String toString(){
-        //TODO Hur gör jag för att få ut mer än bara 1 task?
         String str = "";
         for(int i = 1; i<=taskList.size();i++) {
            str += taskList.get(i).toString() + "\n";

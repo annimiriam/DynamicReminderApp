@@ -24,16 +24,16 @@ public class Controller {
         frame = new MainFrame(this);
         frame.setCard("0");
         taskRegister = new TaskRegister();
-       loadApp();
+        loadApp();
 
 
     }
 
-    public void loadApp(){
+    public void loadApp() {
         fileHandler = new FileHandler();
-        try{
+        try {
             taskRegister = fileHandler.readFromFile();
-        }catch (Exception e){
+        } catch (Exception e) {
             System.err.println("Controller: Fanns ingen fil att läsa.");
         }
         System.out.println("Controller: filehandler created");
@@ -85,7 +85,7 @@ public class Controller {
                 int intervalAmount = 0;
                 try {
                     intervalAmount = Integer.parseInt(frame.getIntervalAmount());
-                }catch (Exception e){
+                } catch (Exception e) {
                     JOptionPane.showMessageDialog(frame, "You need to add a preferred interval as a number");
                     break;
                 }
@@ -131,17 +131,22 @@ public class Controller {
         updateGUI();
     }
 
-    public void setLastPerformed(int taskId, Date date){
+    public void setLastPerformed(int taskId, Date date) {
         Task task = taskRegister.getTaskWithId(taskId);
         task.setLastPerformed(date);
     }
 
 
-    public void deleteTask(int taskId){
+    public void deleteTask(int taskId) {
         System.out.println("Controller: Delete Task: " + taskId);
-        taskRegister.removeWithId(taskId);
-        loadTasksToGUI();
-        frame.setCard("1");
+        int result = JOptionPane.showConfirmDialog(frame, "Are you sure you want to delete this task?", "Delete", JOptionPane.YES_NO_OPTION);
+        if (result == 0) {
+            taskRegister.removeWithId(taskId);
+            loadTasksToGUI();
+            frame.setCard("1");
+            fileHandler.saveToFile(taskRegister);
+        }
+
     }
 
     public void openTask(int taskId) {
@@ -158,16 +163,16 @@ public class Controller {
         frame.setCard("2");
     }
 
-    public void loadTasksToGUI(){
+    public void loadTasksToGUI() {
         frame.removeTaskList();
         int size = taskRegister.getBiggestID();
         System.out.println("Controller - loadTaskToGUI: taskregisterSize: " + size);
-        for(int i =1; i<=size;i++){
-           Task task =  taskRegister.getTaskWithId(i);
-           if(task!=null){
+        for (int i = 1; i <= size; i++) {
+            Task task = taskRegister.getTaskWithId(i);
+            if (task != null) {
                 frame.addTask(task.getTitle(), task.getTimeUntil(), task.getTimeUnit(), task.getId());
-               System.out.println("Controller - loadTaskToGUI: Add task:" + task.toString());
-           }
+                System.out.println("Controller - loadTaskToGUI: Add task:" + task.toString());
+            }
         }
 
     }
