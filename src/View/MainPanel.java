@@ -20,6 +20,8 @@ public class MainPanel extends JPanel{
     private Controller controller;
     private JScrollPane scrollPane;
     private JScrollBar scrollBar;
+    private JPanel load;
+    private JLabel lblLoad = new JLabel("Loading content");
 
     public MainPanel(Controller controller, int width, int height){
         this.controller = controller;
@@ -41,6 +43,11 @@ public class MainPanel extends JPanel{
         titlePanel.add(lblTitle, BorderLayout.CENTER);
         add(titlePanel, BorderLayout.NORTH);
 
+        load = new JPanel();
+        load.setLayout(new BorderLayout());
+        load.add(lblLoad, BorderLayout.CENTER);
+
+
         cardLayout = new CardLayout();
         cardPanel = new JPanel(cardLayout);
         int cardHeight = (int) (height * 0.86);
@@ -52,6 +59,7 @@ public class MainPanel extends JPanel{
         scrollPane = new JScrollPane(taskOverviewPanel);
         scrollBar = scrollPane.getVerticalScrollBar();
         //scrollPane.setPreferredSize(new Dimension(width, height));
+        cardPanel.add(load,"0");
         cardPanel.add(scrollPane, "1");
         cardPanel.add(taskDetailsPanel, "2");
         //cardPanel.add(deletePanel, "3")

@@ -30,8 +30,8 @@ public class TaskRegister implements Serializable {
     }
 
     public void removeWithId(int taskId){
-        Task task = new Task(taskId);
-        taskList.remove(task);
+
+        taskList.remove(taskId);
     }
 
     public void removeTask(Task task){
@@ -50,6 +50,9 @@ public class TaskRegister implements Serializable {
 public int getBiggestID(){
         return lastId;
 }
+    public int getSize(){
+        return taskList.size();
+    }
 
     public Task getTaskWithId(int id) {
      Task task =  taskList.get(id);
@@ -63,7 +66,13 @@ public int getBiggestID(){
 
     public String toString(){
         //TODO Hur gör jag för att få ut mer än bara 1 task?
-        String str = taskList.get(1).toString();
+        String str = "";
+        for(int i = 1; i<=taskList.size();i++) {
+           str += taskList.get(i).toString() + "\n";
+            str += "\n--------------------------------";
+        }
+        str += "\nLastID: " +lastId;
+        str += "\n--------------------------------";
         return str;
     }
 

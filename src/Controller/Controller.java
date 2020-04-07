@@ -22,12 +22,27 @@ public class Controller {
 
     public Controller() {
         frame = new MainFrame(this);
+        frame.setCard("0");
         taskRegister = new TaskRegister();
+       loadApp();
+
+
+    }
+
+    public void loadApp(){
+        fileHandler = new FileHandler();
+        try{
+            taskRegister = fileHandler.readFromFile();
+        }catch (Exception e){
+            System.err.println("Controller: Fanns ingen fil att läsa.");
+        }
+        System.out.println("Controller: filehandler created");
+        loadTasksToGUI();
+
         UpdateThread updateThread = new UpdateThread(this);
         updateThread.start();
-        fileHandler = new FileHandler(taskRegister);
 
-        loadTasksToGUI();
+        frame.setCard("1");
     }
 
 
@@ -101,7 +116,7 @@ public class Controller {
                 }
                 updateGUI();
                 frame.setCard("1");
-                fileHandler.saveToFile(); //todo flytta! Just nu sparar den bara 1? tror jag
+                fileHandler.saveToFile(taskRegister); //todo flytta! Just nu sparar den bara 1? tror jag
                 break;
         }
 
@@ -121,6 +136,14 @@ public class Controller {
         task.setLastPerformed(date);
     }
 
+
+    public void deleteTask(int taskId){
+        System.out.println("Controller: Delete Task: " + taskId);
+        taskRegister.removeWithId(taskId);
+        loadTasksToGUI();
+        frame.setCard("1");
+    }
+
     public void openTask(int taskId) {
         Task task = taskRegister.getTaskWithId(taskId);
         frame.setSelectedTaskId(taskId);
@@ -136,13 +159,15 @@ public class Controller {
     }
 
     public void loadTasksToGUI(){
+        frame.removeTaskList();
         int size = taskRegister.getBiggestID();
-        for(int i =1; i<size;i++){
+        System.out.println("Controller - loadTaskToGUI: taskregisterSize: " + size);
+        for(int i =1; i<=size;i++){
            Task task =  taskRegister.getTaskWithId(i);
            if(task!=null){
                 frame.addTask(task.getTitle(), task.getTimeUntil(), task.getTimeUnit(), task.getId());
-            }
-
+               System.out.println("Controller - loadTaskToGUI: Add task:" + task.toString());
+           }
         }
 
     }

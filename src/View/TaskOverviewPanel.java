@@ -12,6 +12,7 @@ import Model.TimeUnit;
 public class TaskOverviewPanel extends JPanel{
     private int width, height;
     private Controller controller;
+    private final static int MAX_TASKS= 30 ;
 
     private SingleTaskPanel[] singleTaskPanels;
     private int index;
@@ -22,7 +23,7 @@ public class TaskOverviewPanel extends JPanel{
         this.controller = controller;
         this.width = width;
         this.height = height;
-        singleTaskPanels = new SingleTaskPanel[30];
+        singleTaskPanels = new SingleTaskPanel[MAX_TASKS];
         index = 0;
         setPreferredSize(new Dimension(width,height+1000));
 
@@ -35,6 +36,12 @@ public class TaskOverviewPanel extends JPanel{
         add(singleTaskPanels[index]);
         index++;
     }
+
+    public void clearTaskList(){
+        singleTaskPanels = new SingleTaskPanel[MAX_TASKS];
+        removeAll();
+    }
+
 
     public void updateAllTasks(){
 

@@ -76,7 +76,7 @@ public class SingleTaskPanel extends JPanel {
         title = controller.getTaskTitle(taskId);
         int timeRemaining = controller.getTaskTimeRemaining(taskId);
         updateDaysRemaining(timeRemaining);
-        System.out.println("SingleTaskpanel - UpdateTask. timeRemaining: " + timeRemaining );
+        //System.out.println("SingleTaskpanel - UpdateTask. timeRemaining: " + timeRemaining );
     }
 
     private class ButtonActionListener implements ActionListener {

@@ -61,6 +61,7 @@ public class TaskDetailsPanel extends JPanel {
     //save
     private JPanel savePanel;
     private JButton btnSave;
+    private JButton btnDelete;
 
     //last performed
     private JPanel lastPerformedPanel;
@@ -187,6 +188,10 @@ public class TaskDetailsPanel extends JPanel {
         btnSave = new JButton("Save task!");
         btnSave.addActionListener(new ButtonActionListener());
         savePanel.add(btnSave);
+
+        btnDelete = new JButton("Delete task");
+        btnDelete.addActionListener(new ButtonActionListener());
+        savePanel.add(btnDelete);
 
         panel = new JPanel(new GridLayout(18, 1));
         panel.setPreferredSize(new Dimension(width - 30, height));
@@ -413,10 +418,10 @@ public class TaskDetailsPanel extends JPanel {
             if (e.getSource() == btnSave) {
                 controller.buttonPressed(ButtonType.SAVE);
             }
-            if (e.getSource() == btnMarkAsDoneNow){
+            else if (e.getSource() == btnMarkAsDoneNow){
                 controller.markTaskAsDone(taskId);
             }
-            if (e.getSource() == btnSetLastPerformed){
+            else if (e.getSource() == btnSetLastPerformed){
                 int hour = comboBoxLastPerformedHour.getSelectedIndex();
                 int day = comboBoxLastPerformedDay.getSelectedIndex() + 1;
                 int month = comboBoxLastPerformedMonth.getSelectedIndex();
@@ -426,6 +431,9 @@ public class TaskDetailsPanel extends JPanel {
                 cal.set(Calendar.MONTH, month);
                 Date date = cal.getTime();
                 controller.setLastPerformed(taskId, date);
+            }
+            else if(e.getSource() == btnDelete){
+                controller.deleteTask(taskId);
             }
         }
     }
