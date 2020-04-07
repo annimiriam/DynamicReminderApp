@@ -108,6 +108,9 @@ public class MainFrame extends JFrame {
         return panel.getTaskDetailsPanel().getTaskId();
 
     }
+    public void removeTaskList(){
+        panel.getTaskOverviewPanel().clearTaskList();
+    }
 
     public void setSelectedTaskId(int id){
         panel.getTaskDetailsPanel().setTaskId(id);
