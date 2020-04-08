@@ -67,7 +67,8 @@ public class SingleTaskPanel extends JPanel {
         this.taskId = taskId;
     }
 
-    public void updateDaysRemaining(int timeRemaining) {
+    public void updateDaysRemaining(int timeRemaining)
+    {
         String text = generateText(null, timeRemaining);
         lblTask.setText(text);
     }

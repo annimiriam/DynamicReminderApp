@@ -10,7 +10,7 @@ import java.util.Date;
  * @version 1.0
  */
 public class Task implements Comparable<Object>, Serializable {
-    private int id;     //TODO: Hur ger vi task ett id? Utifrån task-register?
+    private int id;
     private String title;
     private String info;
     private TimeSpan preferredInterval;
@@ -135,6 +135,7 @@ public class Task implements Comparable<Object>, Serializable {
     public TimeInterval getPossibleTimeInterval(){
         return possibleTimeForExecution.getPossibleHours();
     }
+
     public int getTimeUntil(){
         int time = preferredInterval.getTime();
         int timeUntil = -5;
