@@ -3,6 +3,7 @@ package View;
 import javax.swing.*;
 import java.awt.*;
 import java.time.LocalTime;
+import java.util.Date;
 
 import Controller.*;
 import Model.TimeUnit;
@@ -92,6 +93,10 @@ public class MainFrame extends JFrame {
         panel.getTaskDetailsPanel().setNotes(notes);
     }
 
+    public void setLastPerformed(Date lastPerformed) {
+        panel.getTaskDetailsPanel().setLastPerformed(lastPerformed);
+    }
+
     public void addTask(String title, int timeRemaining, TimeUnit timeUnit, int taskId) {
         panel.getTaskOverviewPanel().addTask(title, timeRemaining, timeUnit, taskId);
     }
@@ -108,11 +113,12 @@ public class MainFrame extends JFrame {
         return panel.getTaskDetailsPanel().getTaskId();
 
     }
-    public void removeTaskList(){
+
+    public void removeTaskList() {
         panel.getTaskOverviewPanel().clearTaskList();
     }
 
-    public void setSelectedTaskId(int id){
+    public void setSelectedTaskId(int id) {
         panel.getTaskDetailsPanel().setTaskId(id);
     }
 
