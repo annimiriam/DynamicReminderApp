@@ -129,10 +129,11 @@ public class Controller {
 
     public void markTaskAsDone(int taskId) {
         Task task = taskRegister.getTaskWithId(taskId);
-        Date lastPerformed = task.getLastPerformed();
+        Date lastPerformed;
         System.out.println("Task id: " + taskId);
         task.markAsDoneNow();
         System.out.println("Last performed: " + task.getLastPerformed().toString());
+        lastPerformed = task.getLastPerformed();
         frame.setLastPerformed(lastPerformed);
         updateGUI();
     }
