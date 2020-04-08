@@ -31,11 +31,15 @@ public class Controller {
 
     public void loadApp() {
         fileHandler = new FileHandler();
+        TaskRegister loadedRegister = null;
         try {
-            taskRegister = fileHandler.readFromFile();
+            loadedRegister = fileHandler.readFromFile();
         } catch (Exception e) {
             System.err.println("Controller: Fanns ingen fil att läsa.");
         }
+        if(loadedRegister!= null)
+            taskRegister=loadedRegister;
+
         System.out.println("Controller: filehandler created");
         loadTasksToGUI();
 
