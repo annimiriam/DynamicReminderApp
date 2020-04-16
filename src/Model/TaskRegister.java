@@ -47,9 +47,10 @@ public class TaskRegister implements Serializable {
 
     }
 
-public int getBiggestID(){
+    public int getBiggestID(){
         return lastId;
 }
+
     public int getSize(){
         return taskList.size();
     }
