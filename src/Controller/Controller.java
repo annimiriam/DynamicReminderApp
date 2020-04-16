@@ -129,11 +129,13 @@ public class Controller {
 
     public void markTaskAsDone(int taskId) {
         Task task = taskRegister.getTaskWithId(taskId);
+        Date lastPerformed;
         System.out.println("Task id: " + taskId);
         task.markAsDoneNow();
         System.out.println("Last performed: " + task.getLastPerformed().toString());
+        lastPerformed = task.getLastPerformed();
+        frame.setLastPerformed(lastPerformed);
         updateGUI();
-        frame.setCard("1");
     }
 
     public void setLastPerformed(int taskId, Date date) {
@@ -156,6 +158,7 @@ public class Controller {
 
     public void openTask(int taskId) {
         Task task = taskRegister.getTaskWithId(taskId);
+        Date lastPerformed = task.getLastPerformed();
         frame.setSelectedTaskId(taskId);
         frame.setTaskInterval(task.getPreferredInterval().getTime(), task.getTimeUnit());
         frame.setTaskTitle(task.getTitle());
@@ -165,6 +168,9 @@ public class Controller {
         TimeInterval timeInterval = task.getPossibleTimeInterval();
         if (timeInterval != null)
             frame.setPossibleHours(timeInterval.getFrom(), timeInterval.getTo());
+
+        frame.setLastPerformed(lastPerformed);
+
         frame.setCard("2");
     }
 
